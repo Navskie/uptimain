@@ -79,7 +79,7 @@
             $country = $check_stockist_fetch['stockist_country'];
             $state = $check_stockist_fetch['stockist_state'];
 
-            $get_sum_data = "SELECT COUNT(*) AS bilang FROM upti_transaction WHERE trans_country = '$country' AND trans_status = 'Pending' AND trans_country = '$state'";
+            $get_sum_data = "SELECT COUNT(*) AS bilang FROM upti_transaction WHERE trans_country = '$country' AND trans_status = 'Pending' AND trans_state = '$state'";
             $get_sum_data_qry = mysqli_query($connect, $get_sum_data);
             $get_sum_data_fetch = mysqli_fetch_array($get_sum_data_qry);
           ?>
