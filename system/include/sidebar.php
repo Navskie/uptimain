@@ -1001,7 +1001,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="reseller.php" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon uil uil-apps"></i>
               <p>
                 Dashboard
               </p>
@@ -1009,7 +1009,7 @@
           </li>
           <li class="nav-item">
             <a href="ticket.php" class="nav-link">
-              <i class="nav-icon fas fa-list-ol"></i>
+              <i class="nav-icon uil uil-ticket"></i>
               <p>
                 Ticket
               </p>
@@ -1040,7 +1040,7 @@
           <li class="nav-header">Sales</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-shopping-cart"></i>
+              <i class="nav-icon uil uil-shopping-bag"></i>
               <p>
                 Customer Orders
                 <i class="fas fa-angle-left right"></i>
@@ -1081,7 +1081,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-dollar-sign"></i>
+              <i class="nav-icon uil uil-setting"></i>
               <p>
                 Sales Status
                 <i class="fas fa-angle-left right"></i>
@@ -1128,7 +1128,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon uil uil-panel-add"></i>
               <p>
                 Generate Reports
                 <i class="fas fa-angle-left right"></i>
@@ -1151,7 +1151,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-credit-card"></i>
+              <i class="nav-icon uil uil-wallet"></i>
               <p>
                 Earning Wallet
                 <i class="fas fa-angle-left right"></i>
@@ -1177,7 +1177,7 @@
           <li class="nav-header">Accounts</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-plus"></i>
+              <i class="nav-icon uil uil-user-plus"></i>
               <p>
                 Create Accounts
                 <i class="fas fa-angle-left right"></i>
