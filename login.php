@@ -225,7 +225,7 @@
 
           <!-- Register -->
           <div class="form signup">
-            <span class="title">Be one of us</span>
+            <span class="title">Be ones of us</span>
             <form action="login-process.php" method="post">
               <div class="input-field">
                 <input type="text" placeholder="Username" name="us" required autocomplete="off">
