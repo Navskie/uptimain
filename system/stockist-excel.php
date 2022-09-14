@@ -36,7 +36,7 @@
         ';
 
         // Fetch Records From Database
-        $export_sql = "SELECT trans_email, trans_contact, trans_address, trans_office, trans_mop, ol_date, trans_fname, ol_poid, ol_seller, ol_code, ol_qty, ol_price FROM upti_order_list INNER JOIN upti_transaction ON upti_order_list.ol_poid = upti_transaction.trans_poid WHERE ol_country = '$country' AND trans_state = '$state' AND trans_status = 'Pending' AND trans_date BETWEEN '$date1' AND '$date2'";
+        $export_sql = "SELECT trans_email, trans_contact, trans_address, trans_office, trans_mop, ol_date, trans_fname, ol_poid, ol_seller, ol_code, ol_qty, ol_price FROM upti_order_list INNER JOIN upti_transaction ON upti_order_list.ol_poid = upti_transaction.trans_poid WHERE trans_country = '$country' AND trans_state = '$state' AND trans_status = 'Pending' AND trans_date BETWEEN '$date1' AND '$date2'";
         // echo '<br>';
         $export_qry = mysqli_query($connect, $export_sql);
         $export_num = mysqli_num_rows($export_qry);
