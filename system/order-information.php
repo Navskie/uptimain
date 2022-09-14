@@ -42,6 +42,9 @@
         $phone = $_POST['phone'];
         $country = $_POST['country'];
         $states = $_POST['state'];
+        if ($states) {
+          $states = 'ALL';
+        }
         $state = strtoupper($states);
         $offices = $_POST['asd'];
         $office = strtoupper($offices);
@@ -112,7 +115,13 @@
         $offices = $_POST['asd'];
         $office = strtoupper($offices);
         $states = $_POST['state'];
+
+        if ($states) {
+          $states = 'ALL';
+        }
+        
         $state = strtoupper($states);
+        
 
         $update_sql = "UPDATE upti_transaction SET
             trans_fname = '$fullname', 
