@@ -919,9 +919,9 @@
                             <div class="col-12"><hr></div>
                             
                             <?php
-                                echo $office_check;
-                                echo $office_check_status;
-                                if ($customer_country == 'CANADA' && $office_check == 'Direct Mail Box' && $office_check_status == '') {
+                                // echo $office_check;
+                                // echo $office_check_status;
+                                if ($customer_country == 'CANADA' && $office_check == 'DIRECT MAIL BOX' && $office_check_status == '') {
                             ?>
                             <a href="#" class="btn btn-info form-control rounded-0" data-toggle="modal" data-target="#office<?php echo $get_transaction_fetch['trans_poid']; ?>">PROCEED</a>
                             <?php
