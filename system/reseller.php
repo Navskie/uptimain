@@ -516,12 +516,12 @@
     
       
   </div>
-      <div class="popup">
+      <!-- <div class="popup">
         <div class="contentBox">
           <div class="clos"><img src="images/close.png" class="close"/></div>
           <img src="images/manual/announces.jpg" class="img-responsive" alt="">
         </div>
-      </div>
+      </div> -->
 <script type="text/javascript">
   const popup = document.querySelector('.popup');
   const close = document.querySelector('.close');

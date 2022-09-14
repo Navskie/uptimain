@@ -93,10 +93,22 @@
     ?>
         <!-- START HERE -->
     <div class="container-fluid">
-      <div class="card">
-        <div class="card-body">
-          asd
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="course">
+            <div class="preview bg-success">
+              <h2 class="text-center"><i class="uil uil-check-circle"></i></h2>
+            </div>
+
+            <div class="info">
+              <h6>DELIVERED ORDERS</h6>
+              <h2><b>TEST</b></h2>
+            </div>
+          </div>
+          <br>
         </div>
+
       </div>
       </div><!-- /.container-fluid -->
     </div>
