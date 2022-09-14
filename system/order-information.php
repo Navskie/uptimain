@@ -42,7 +42,7 @@
         $phone = $_POST['phone'];
         $country = $_POST['country'];
         $states = $_POST['state'];
-        if ($states) {
+        if ($states == '') {
           $states = 'ALL';
         }
         $state = strtoupper($states);
@@ -116,7 +116,7 @@
         $office = strtoupper($offices);
         $states = $_POST['state'];
 
-        if ($states) {
+        if ($states == '') {
           $states = 'ALL';
         }
         
