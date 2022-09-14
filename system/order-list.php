@@ -64,6 +64,7 @@
                 $customer_country = $get_transaction_fetch['trans_country'];
                 $office_check = $get_transaction_fetch['trans_office'];
                 $office_state = $get_transaction_fetch['trans_state'];
+                $terms = $get_transaction_fetch['trans_terms'];
                 $office_check_status = $get_transaction_fetch['trans_office_status'];
             } else {
                 $mode_of_payment = '';
@@ -73,6 +74,7 @@
                 $contact = '';
                 $office_check = '';
                 $office_state = '';
+                $terms = '';
                 $office_check_status = '';
             }
 
@@ -931,7 +933,17 @@
                                 <?php if ($mode_of_payment == '' || $get_order_list_num == '') { ?>
                                 <button type="submit" name="checkouts" class="form-control btn btn-success" style="border-radius: 0 !important" disabled>CHECK OUT</button>
                                 <?php } else { ?>
-                                <button type="submit" name="checkouts" class="form-control btn btn-success" style="border-radius: 0 !important">CHECK OUT</button>
+                                  <?php 
+                                    if ($terms == '') {
+                                  ?>
+                                    <a href="#" class="btn btn-info form-control rounded-0" data-toggle="modal" data-target="#terms<?php echo $get_transaction_fetch['trans_poid']; ?>">OFFICIAL STATEMENT</a>
+                                  <?php
+                                    } else {
+                                  ?>
+                                    <button type="submit" name="checkouts" class="form-control btn btn-success" style="border-radius: 0 !important">CHECK OUT</button>
+                                  <?php
+                                    }
+                                  ?>
                                 <?php } ?>
                             </div>
                             <?php
@@ -951,6 +963,7 @@
     <!-- /.content-header -->
   </div>
 <?php include 'backend/add-office-modal.php'; ?>
+<?php include 'backend/add-terms-modal.php'; ?>
 <?php include 'include/footer.php'; ?>
 <script>
 	$(function(){
