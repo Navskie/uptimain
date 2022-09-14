@@ -1007,14 +1007,14 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="ticket.php" class="nav-link">
               <i class="nav-icon uil uil-ticket"></i>
               <p>
                 Ticket
               </p>
             </a>
-          </li>
+          </li> -->
           <!-- EXCLUSIVE -->
           <?php
             $code_reseller = $_SESSION['code'];
