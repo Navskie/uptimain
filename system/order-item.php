@@ -53,7 +53,7 @@
         $c_state = $get_country_fetch['trans_state'];
       }
     } else {
-      $c_state = '';
+      $c_state = 'ALL';
     }
 
     if(isset($_POST['add_items'])) {
