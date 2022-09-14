@@ -98,12 +98,12 @@
         <div class="col-lg-3 col-md-6 col-sm-12">
           <div class="course">
             <div class="preview bg-success">
-              <h2 class="text-center"><i class="uil uil-check-circle"></i></h2>
+              <h2 class="text-center"><i class="uil uil-ticket"></i></h2>
             </div>
 
             <div class="info">
-              <h6>DELIVERED ORDERS</h6>
-              <h2><b>TEST</b></h2>
+              <h6>RAFFLE TICKET</h6>
+              <h2><b><?php echo $myid; ?> - 0</b></h2>
             </div>
           </div>
           <br>
