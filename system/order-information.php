@@ -41,11 +41,12 @@
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $country = $_POST['country'];
-        // $states = $_POST['state'];
-        $states = 'ALL';
-        // if ($states == '') {
-        //   $states = 'ALL';
-        // }
+        $states = $_POST['state'];
+        if ($states == 'ALBERTA') {
+          $states = 'ALBERTA CANADA';
+        } elseif ($states == '') {
+          $states = 'ALL';
+        }
         $state = strtoupper($states);
         $offices = $_POST['asd'];
         $office = strtoupper($offices);
@@ -115,12 +116,17 @@
         $country = $_POST['country'];
         $offices = $_POST['asd'];
         $office = strtoupper($offices);
-        // $states = $_POST['state'];
-        $states = 'ALL';
+        $states = $_POST['state'];
+
         // if ($states == '') {
         //   $states = 'ALL';
         // }
-        
+        if ($states == 'ALBERTA') {
+          $states = 'ALBERTA CANADA';
+        } elseif ($states == '') {
+          $states = 'ALL';
+        }
+
         $state = strtoupper($states);
         
 
