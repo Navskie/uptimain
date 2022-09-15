@@ -94,20 +94,27 @@
         <!-- START HERE -->
     <div class="container-fluid">
       <div class="row">
+        <?php
+          $ticket = mysqli_query($connect, "SELECT * FROM upti_raffle WHERE raffle_code = '$myid'");
+          while ($entry = mysqli_fetch_array($ticket)) {
+        ?>
+          <div class="col-lg-2 col-md-3 col-sm-6">
+            <div class="course">
+              <div class="preview bg-success">
+                <h2 class="text-center"><i class="uil uil-ticket"></i></h2>
+              </div>
 
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <div class="course">
-            <div class="preview bg-success">
-              <h2 class="text-center"><i class="uil uil-ticket"></i></h2>
+              <div class="info">
+                <h6>RAFFLE TICKET</h6>
+                <h2><b><?php echo $myid; ?> - <?php echo $entry['raffle_number'] ?></b></h2>
+                <span><?php echo $entry['raffle_date'] ?> <br> <?php echo $entry['raffle_time'] ?></span>
+              </div>
             </div>
-
-            <div class="info">
-              <h6>RAFFLE TICKET</h6>
-              <h2><b><?php echo $myid; ?> - 0</b></h2>
-            </div>
+            <br>
           </div>
-          <br>
-        </div>
+        <?php
+          }
+        ?>
 
       </div>
       </div><!-- /.container-fluid -->

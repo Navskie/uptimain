@@ -1007,14 +1007,14 @@
               </p>
             </a>
           </li>
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a href="ticket.php" class="nav-link">
               <i class="nav-icon uil uil-ticket"></i>
               <p>
                 Ticket
               </p>
             </a>
-          </li> -->
+          </li>
           <!-- EXCLUSIVE -->
           <?php
             $code_reseller = $_SESSION['code'];
@@ -1917,11 +1917,11 @@
 
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-secret"></i>
               <p>
-                Special Button
+                
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -1949,10 +1949,34 @@
                 </a>
               </li>
             </ul>
+          </li> -->
+          <li class="nav-item">
+            <a href="admin-reseller.php" class="nav-link">
+              <i class="nav-icon uil uil-dollar-alt"></i>
+              <p>
+                Reseller Sales
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="showproduct.php" class="nav-link">
+              <i class="nav-icon uil uil-pricetag-alt"></i>
+              <p>
+                PH Prices
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="reseller-tree.php" class="nav-link">
+              <i class="nav-icon uil uil-cloud-database-tree"></i>
+              <p>
+                Reseller Tree
+              </p>
+            </a>
           </li>
           <li class="nav-item">
             <a href="search04062022.php" class="nav-link">
-              <i class="nav-icon fas fa-search"></i>
+              <i class="nav-icon uil uil-search"></i>
               <p>
                 Search Poid
               </p>
@@ -1960,7 +1984,7 @@
           </li>
           <li class="nav-item">
             <a href="reseller-list.php" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon uil uil-users-alt"></i>
               <p>
                 Reseller
               </p>
@@ -1968,7 +1992,7 @@
           </li>
           <li class="nav-item">
             <a href="reseller-count.php" class="nav-link">
-              <i class="nav-icon fas fa-plus"></i>
+              <i class="nav-icon uil uil-user-plus"></i>
               <p>
                 Reseller Count
               </p>
@@ -1976,9 +2000,17 @@
           </li>
           <li class="nav-item">
             <a href="admin-sold-item.php" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon uil uil-percentage"></i>
               <p>
                 Sold Quantity
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="tiktok.php" class="nav-link">
+              <i class="nav-icon uil uil-ticket"></i>
+              <p>
+                Tiktok Entry
               </p>
             </a>
           </li>
