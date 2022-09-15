@@ -50,7 +50,8 @@
       if ($state != 'ALBERTA') {
         $c_state = 'ALL';
       } else {
-        $c_state = $get_country_fetch['trans_state'];
+        // $c_state = $get_country_fetch['trans_state'];
+        $c_state = 'ALL';
       }
     } else {
       $c_state = 'ALL';
