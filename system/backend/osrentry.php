@@ -24,10 +24,10 @@
       $ticket_f = mysqli_fetch_array($check_ticket);
       if (mysqli_num_rows($check_ticket) > 0) {
         $new_count = $ticket_f['bilang'] + 1;
-        $epayment_process = "INSERT INTO upti_raffle (raffle_time, raffle_date, raffle_code, raffle_number, raffle_poid, raffle_name) VALUES ('$time','$date','$ticket','$new_count', '$ticket', '$customer_name')";
+        $epayment_process = "INSERT INTO upti_raffle (raffle_time, raffle_date, raffle_code, raffle_number, raffle_poid, raffle_name) VALUES ('$time','$date','$ticket','$new_count', '$poid', '$customer_name')";
         $epayment_process_qry = mysqli_query($connect, $epayment_process);
       } else {
-        $epayment_process = "INSERT INTO upti_raffle (raffle_time, raffle_date, raffle_code, raffle_number, raffle_poid, raffle_name) VALUES ('$time','$date','$ticket','1', '$ticket', '$customer_name')";
+        $epayment_process = "INSERT INTO upti_raffle (raffle_time, raffle_date, raffle_code, raffle_number, raffle_poid, raffle_name) VALUES ('$time','$date','$ticket','1', '$poid', '$customer_name')";
         $epayment_process_qry = mysqli_query($connect, $epayment_process);
       }
 
