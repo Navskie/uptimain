@@ -112,7 +112,7 @@
 
               <div class="info">
                 <h6>RAFFLE TICKET</h6>
-                <h2><b><?php echo $myid; ?>-<?php echo $entry['raffle_number'] ?></b></h2>
+                <h2><b><?php echo $entry['raffle_poid']; ?>-<?php echo $entry['raffle_number'] ?></b></h2>
                 <span><?php echo $entry['raffle_date'] ?>-<?php echo $entry['raffle_time'] ?></span><br>
                 <span><?php echo $entry['raffle_name'] ?></span>
               </div>
