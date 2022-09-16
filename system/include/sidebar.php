@@ -1493,6 +1493,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="tiktok-osr.php" class="nav-link">
+              <i class="nav-icon uil uil-ticket"></i>
+              <p>
+                Tiktok Entry
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

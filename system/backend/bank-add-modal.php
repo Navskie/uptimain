@@ -5,8 +5,9 @@
         $branch = $_POST['branch'];
         $name = $_POST['name'];
         $number = $_POST['number'];
+        $state = $_POST['state'];
 
-        $epayment_process = "INSERT INTO upti_mod (mod_country, mod_branch, mod_name, mod_number, mod_status) VALUES ('$country', '$branch', '$name', '$number', 'bank')";
+        $epayment_process = "INSERT INTO upti_mod (mod_state, mod_country, mod_branch, mod_name, mod_number, mod_status) VALUES ('$state', '$country', '$branch', '$name', '$number', 'bank')";
         $epayment_process_qry = mysqli_query($connect, $epayment_process);
 
         echo "<script>alert('Data has been Added successfully.');window.location.href = 'order-bank.php';</script>";
@@ -36,6 +37,22 @@
                             while ($product = mysqli_fetch_array($product_qry)) {
                             ?>
                             <option value="<?php echo $product['country_name'] ?>"><?php echo $product['country_name'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>State</label>
+                        <select class="form-control select2bs4" style="width: 100%;" name="state">
+                            <option value="">Select State</option>
+                            <option value="ALL">ALL</option>
+                            <?php
+                            $product_sql = "SELECT * FROM upti_state";
+                            $product_qry = mysqli_query($connect, $product_sql);
+                            while ($product = mysqli_fetch_array($product_qry)) {
+                            ?>
+                            <option value="<?php echo $product['state_name'] ?>"><?php echo $product['state_name'] ?></option>
                             <?php } ?>
                         </select>
                     </div>

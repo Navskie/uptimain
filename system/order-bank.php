@@ -29,6 +29,7 @@
                                   <tr>
                                     <th class="text-center">#</th>
                                     <th class="text-center">Country</th>
+                                    <th class="text-center">State</th>
                                     <th class="text-center">Bank Branch</th>
                                     <th class="text-center">Account Name</th>
                                     <th class="text-center">Account Number</th>
@@ -44,6 +45,7 @@
                                 <tr>
                                   <td class="text-center"><?php echo $number; ?></td>
                                   <td class="text-center"><?php echo $epayment['mod_country'] ?></td>
+                                  <td class="text-center"><?php echo $epayment['mod_state'] ?></td>
                                   <td class="text-center"><?php echo $epayment['mod_branch'] ?></td>
                                   <td class="text-center"><?php echo $epayment['mod_name'] ?></td>
                                   <td class="text-center"><?php echo $epayment['mod_number'] ?></td>

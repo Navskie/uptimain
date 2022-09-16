@@ -26,6 +26,22 @@
                     </div>
                 </div>
                 <div class="col-12">
+                    <div class="form-group">
+                        <label>State</label>
+                        <select class="form-control select2bs4" style="width: 100%;" name="state">
+                            <option value="<?php echo $epayment['mod_state'] ?>"><?php echo $epayment['mod_state'] ?></option>
+                            <option value="ALL">ALL</option>
+                            <?php
+                            $product_sql = "SELECT * FROM upti_state";
+                            $product_qry = mysqli_query($connect, $product_sql);
+                            while ($product = mysqli_fetch_array($product_qry)) {
+                            ?>
+                            <option value="<?php echo $product['state_name'] ?>"><?php echo $product['state_name'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12">
                     <label for="">Account Branch</label>
                     <input type="text" class="form-control" name="branch" autocomplete="off" required value="<?php echo $epayment['mod_branch'] ?>">
                 </div>
