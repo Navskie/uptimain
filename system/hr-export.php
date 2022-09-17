@@ -69,7 +69,13 @@
             $total_sql = mysqli_query($connect, $total);
             $total_fetch = mysqli_fetch_array($total_sql);
         } elseif (!empty($country) AND !empty($status)) {
-            $order_sql = "SELECT * FROM upti_transaction WHERE trans_status = '$status' AND  trans_country = '$country' AND trans_date BETWEEN '$date1' AND '$date2' ORDER BY trans_date DESC";
+            if ($status == 'Delivered') {
+              $status = 'Order Delivered';
+              $order_sql = "SELECT * FROM upti_transaction INNER JOIN upti_activities ON upti_activities.activities_poid = upti_transaction.trans_poid WHERE activities_caption = '$status' AND  trans_country = '$country' AND trans_date BETWEEN '$date1' AND '$date2' ORDER BY trans_date DESC";
+            } else {
+              $order_sql = "SELECT * FROM upti_transaction WHERE trans_status = '$status' AND  trans_country = '$country' AND trans_date BETWEEN '$date1' AND '$date2' ORDER BY trans_date DESC";
+            }
+
             $order_qry = mysqli_query($connect, $order_sql);
 
             $total = "SELECT SUM(ol_php) AS total FROM upti_order_list WHERE ol_country = '$country' AND ol_status = '$status' AND ol_date BETWEEN '$date1' AND '$date2'";

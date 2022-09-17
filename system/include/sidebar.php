@@ -710,7 +710,7 @@
             <a href="osr-reports2.php" class="nav-link">
               <i class="nav-icon uil uil-panel-add"></i>
               <p>
-                Generate Report
+                Generate OSR Report
               </p>
             </a>
           </li>
@@ -718,7 +718,7 @@
             <a href="admin-osr-report.php" class="nav-link">
               <i class="nav-icon uil uil-panel-add"></i>
               <p>
-                OSR Sales Report
+                OSR Sales Ranking
               </p>
             </a>
           </li>
@@ -731,12 +731,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="accounting-inventory.php" class="nav-link">
-              <i class="nav-icon uil uil-chart"></i>
-              <p>Inventory</p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a href="admin-sales-item.php" class="nav-link">
               <i class="nav-icon uil uil-panel-add"></i>
               <p>
@@ -746,10 +740,16 @@
           </li>
           <li class="nav-item">
             <a href="hr-export.php" class="nav-link">
-              <i class="nav-icon uil uil-file-export"></i>
+              <i class="nav-icon uil uil-panel-add"></i>
               <p>
                 Export Report
               </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="accounting-inventory.php" class="nav-link">
+              <i class="nav-icon uil uil-chart"></i>
+              <p>Inventory</p>
             </a>
           </li>
           <li class="nav-item">

@@ -30,7 +30,7 @@
             
             <div class="card">
                 <div class="card-header">
-                Generate Sold Quantity
+                Generate OSR Sales Ranking
                 </div>
                 <div class="card-body">
                     <div class="row">
