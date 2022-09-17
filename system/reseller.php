@@ -80,7 +80,7 @@
     <div class="content-header">
       <div class="container-fluid">
         
-      
+      tesing
     <?php 
       $myid = $_SESSION['code'];
       
@@ -95,25 +95,5 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    
-      
   </div>
-      <!-- <div class="popup">
-        <div class="contentBox">
-          <div class="clos"><img src="images/close.png" class="close"/></div>
-          <img src="images/manual/announces.jpg" class="img-responsive" alt="">
-        </div>
-      </div> -->
-<script type="text/javascript">
-  const popup = document.querySelector('.popup');
-  const close = document.querySelector('.close');
-
-  window.onload = function() {
-    setTimeout(function() {
-      popup.style.display = 'block';
-    }, 1000)
-  }
-
-  close.addEventListener('click', () => popup.style.display = 'none');
-</script>
 <?php include 'include/footer.php'; ?>
