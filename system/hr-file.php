@@ -24,6 +24,7 @@
             <th>DATE</th>
             <th>CUSTOMER NAME</th>
             <th>AMOUNT</th>
+            <th>PESO</th>
             <th>STATUS</th>
         <tr>
         ';
