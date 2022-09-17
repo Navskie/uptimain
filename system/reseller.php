@@ -122,6 +122,48 @@
 </div>
 
 </div>
+<div class="row">
+      <?php
+        $total_points = "SELECT reseller_points FROM upti_reseller WHERE reseller_code = '$myid'";
+        $total_sql_points = mysqli_query($connect, $total_points);
+        $total_fetch_points = mysqli_fetch_array($total_sql_points);
+      ?>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="course">
+          <div class="preview bg-info">
+            <h2 class="text-center"><i class="uil uil-coins"></i></h2>
+          </div>
+
+          <div class="info">
+            <h6>Reseller Points</h6>
+            <h2><b><?php echo $total_fetch_points['reseller_points'] ?></b></h2>
+            <!-- <a href="branch-rts-order.php" class="text-info">MORE INFO </a> -->
+          </div>
+        </div>
+        <br>
+      </div>
+
+      <?php
+        $total_points_sql = "SELECT SUM(upti_order_list.ol_php) AS total FROM upti_order_list INNER JOIN upti_activities ON upti_order_list.ol_poid = upti_activities.activities_poid WHERE upti_order_list.ol_reseller = '$myid' AND upti_activities.activities_caption = 'Order Delivered'";
+        $total_sql_points_sql = mysqli_query($connect, $total_points_sql);
+        $total_fetch_points_sql = mysqli_fetch_array($total_sql_points_sql);
+      ?>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="course">
+          <div class="preview bg-success">
+            <h2 class="text-center"><i class="uil uil-dollar-sign-alt"></i></h2>
+          </div>
+
+          <div class="info">
+            <h6>total sales</h6>
+            <h2><b>₱ <?php echo $tote = $total_fetch_points_sql['total'] ?></b></h2>
+            <!-- <a href="branch-rts-order.php" class="text-info">MORE INFO </a> -->
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+    <hr><br>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
