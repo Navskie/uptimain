@@ -79,6 +79,8 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
+        
+      
     <?php 
       $myid = $_SESSION['code'];
       
@@ -89,40 +91,105 @@
       $emp_position = $check_fetch['users_position'];
 
     ?>
+        <!-- START HERE -->
+    <div class="container-fluid">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <?php
+          //$date2 = date('m-d-Y');
+            $slide_sql = "SELECT * FROM upti_announce WHERE announce_status = 'Active'";
+            $slide_qry = mysqli_query($connect, $slide_sql);
+            $number = 1;
+            while ($row = mysqli_fetch_array($slide_qry)) {
+          ?>
+              <?php
+                  if($number == 1) {
+              ?>
+                  <div class="carousel-item active">
+                      <img src="images/slide/<?php echo $row['announce_img']; ?>" alt="..." class="img-fluid">
+                      <div class="carousel-caption d-none d-md-block">
+                          <h5></h5>
+                          <p><?php echo $number; ?></p>
+                      </div>
+                  </div>
+              <?php
+                  } else {
+              ?>
+                  <div class="carousel-item">
+                      <img src="images/slide/<?php echo $row['announce_img']; ?>" alt="..." class="img-fluid">
+                      <div class="carousel-caption d-none d-md-block">
+                          <h5></h5>
+                          <p><?php echo $number; ?></p>
+                      </div>
+                  </div>
+              <?php
+                  }
+              ?>
+          <?php $number++; } ?>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    <br>
+    <h5 class="mb-2"><br></h5>
+    <?php
+      $total_points_sql_0 = "SELECT SUM(upti_order_list.ol_php) AS total FROM upti_order_list INNER JOIN upti_activities ON upti_order_list.ol_poid = upti_activities.activities_poid WHERE upti_order_list.ol_reseller = '$myid' AND upti_activities.activities_caption = 'Order Delivered' AND upti_activities.activities_date BETWEEN '04-01-2022' AND '07-31-2022'";
+      $total_sql_points_sql_0 = mysqli_query($connect, $total_points_sql_0);
+      $total_fetch_points_sql_0 = mysqli_fetch_array($total_sql_points_sql_0);
+
+      $reward_sales = $total_fetch_points_sql_0['total'];
+
+      $total_points_sql_1 = "SELECT SUM(upti_order_list.ol_php) AS total FROM upti_order_list INNER JOIN upti_activities ON upti_order_list.ol_poid = upti_activities.activities_poid WHERE upti_order_list.ol_reseller = '$myid' AND upti_activities.activities_caption = 'Order Delivered' AND upti_activities.activities_date BETWEEN '08-01-2022' AND '10-31-2022'";
+      $total_sql_points_sql_1 = mysqli_query($connect, $total_points_sql_1);
+      $total_fetch_points_sql_1 = mysqli_fetch_array($total_sql_points_sql_1);
+
+      $reward_sales1 = $total_fetch_points_sql_1['total'];
+    ?>
     <div class="row">
 
-<div class="col-lg-4 col-md-6 col-sm-12">
-  <div class="course">
-    <div class="preview" style="background: #2771D0;">
-      <h2 class="text-center text-light"><i class="uil uil-plane-departure"></i></h2>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="course">
+        <div class="preview" style="background: #2771D0;">
+          <h2 class="text-center text-light"><i class="uil uil-plane-departure"></i></h2>
+        </div>
+
+        <div class="info">
+          <h6>Boracay Travel Incentive</h6>
+          <h2><b><?php echo number_format($reward_sales) ?> / 400,000</b></h2>
+          <p class="text-danger pt-2">1 Ticket for every 400,000 sales (April - July)</p>
+        </div>
+      </div>
+      <br>
     </div>
 
-    <div class="info">
-      <h6>Boracay Travel Incentive</h6>
-      <h2><b><?php echo number_format($reward_sales) ?> / 400,000</b></h2>
-      <p class="text-danger pt-2">1 Ticket for every 400,000 sales (April - July)</p>
-    </div>
-  </div>
-  <br>
-</div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="course">
+        <div class="preview" style="background: #2771D0;">
+          <h2 class="text-center text-light"><i class="uil uil-plane-departure"></i></h2>
+        </div>
 
-<div class="col-lg-4 col-md-6 col-sm-12">
-  <div class="course">
-    <div class="preview" style="background: #2771D0;">
-      <h2 class="text-center text-light"><i class="uil uil-plane-departure"></i></h2>
+        <div class="info">
+          <h6>Boracay Travel Incentive</h6>
+          <h2><b><?php echo number_format($reward_sales1) ?> / 400,000</b></h2>
+          <p class="text-danger pt-2">1 Ticket for every 400,000 sales (August - October)</p>
+        </div>
+      </div>
+      <br>
     </div>
 
-    <div class="info">
-      <h6>Boracay Travel Incentive</h6>
-      <h2><b><?php echo number_format($reward_sales1) ?> / 400,000</b></h2>
-      <p class="text-danger pt-2">1 Ticket for every 400,000 sales (August - October)</p>
     </div>
-  </div>
-  <br>
-</div>
-
-</div>
-<div class="row">
+    <div class="row">
       <?php
         $total_points = "SELECT reseller_points FROM upti_reseller WHERE reseller_code = '$myid'";
         $total_sql_points = mysqli_query($connect, $total_points);
@@ -350,100 +417,30 @@
     </div>
     <!-- /.row -->
     </div>
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-12">
-            <h5 class="mb-2 mt-4">Reseller Sales Ranking</h5>
-              <div class="card">
-                
-                <div class="card-body">
-                  <table id="example2" class="table table-sm table-bordered table-hover">
-                    <thead>
-                    <tr>
-                      <th>Ranking</th>
-                      <!-- <th>OSR ID</th> -->
-                      <th>Name</th>
-                      <!-- <th>Sales</th> -->
-                    </tr>
-                    </thead>
-                    <?php
-                      $item_sql1 = "SELECT upti_users.users_code, upti_users.users_name, SUM(upti_order_list.ol_php) AS sales FROM upti_users INNER JOIN upti_order_list ON upti_users.users_code = upti_order_list.ol_reseller INNER JOIN upti_activities ON upti_order_list.ol_poid = upti_activities.activities_poid WHERE upti_order_list.ol_status = 'Delivered' AND upti_users.users_role = 'UPTIRESELLER' AND upti_order_list.ol_php > 0 AND upti_users.users_employee = '' AND upti_users.users_position = '' AND upti_activities.activities_date BETWEEN '$date1' AND '$date2' GROUP BY upti_users.users_code ORDER BY sales DESC LIMIT 15";
-                      $item_qry1 = mysqli_query($connect, $item_sql1);
-                      $number = 1;
-                      while ($item1 = mysqli_fetch_array($item_qry1)) {
-                        $sales = $item1['sales'];
-                        // echo '<br>';
-                        // echo $number.' '.$item1['users_name'];
-                        // echo '<br>';
-                        $numbers = $number;
-                    ?>
-                    <tr>
-                      
-                      <?php if($number < 4) { ?>
-                        <td class="text-center"><span class="badge badge-warning"><?php echo $numbers ?></span></td>
-                        <td class="text-center"><b><?php echo $item1['users_name']; ?></b></td>
-                      <?php } else { ?>
-                        <td class="text-center"><span class="badge badge-info"><?php echo $numbers ?></span></td>
-                        <td class="text-center"><?php echo $item1['users_name']; ?></td>
-                      <?php } ?>
-                      
-                      <!-- <td><?php //echo $item['users_code']; ?></td> -->
-                      
-                      <!-- <td><?php //echo number_format($sales) ?></td> -->
-                    </tr>
-                    <?php
-                      $number++;
-                      }
-                    ?>
-                  </table>
-                </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 col-md-6 col-12">
-            <h5 class="mb-2 mt-4">Reseller Leadership Ranking</h5>
-            <div class="card">
-              <div class="card-body">
-                <table id="example22" class="table table-sm table-bordered table-hover">
-                  <thead>
-                  <tr>
-                    <th>Ranking</th>
-                    <!-- <th>Reseller ID</th> -->
-                    <th>Name</th>
-                  </tr>
-                  </thead>
-                  <?php
-                    $item_sql = "SELECT upti_users.users_name ,COUNT(upti_reseller.reseller_main) AS reseller_count FROM upti_users INNER JOIN upti_reseller ON upti_users.users_code = upti_reseller.reseller_main WHERE upti_users.users_role = 'UPTIRESELLER' AND upti_users.users_position = '' AND upti_reseller.reseller_date BETWEEN '$date1' AND '$date2' GROUP BY upti_users.users_code ORDER BY reseller_count DESC LIMIT 15";
-                    $item_qry = mysqli_query($connect, $item_sql);
-                    $number = 1;
-                    while ($item = mysqli_fetch_array($item_qry)) {
-                  ?>
-                  <tr>
-                    <?php if ($number < 4) { ?>
-                    <td class="text-center"><span class="badge badge-danger"><?php echo $number ?></span></td>
-                    
-                    <td class="text-center"><b><?php echo $item['users_name']; ?></b></td>
-
-                    <?php } else { ?>
-                    <td class="text-center"><span class="badge badge-info"><?php echo $number ?></span></td>
-                    
-                    <td class="text-center"><?php echo $item['users_name']; ?></td>
-
-                    <?php } ?>
-                    
-                    
-                    
-                  </tr>
-                  <?php
-                    $number++; 
-                    }
-                  ?>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+        
+    </div>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+    
+      
   </div>
+      <!-- <div class="popup">
+        <div class="contentBox">
+          <div class="clos"><img src="images/close.png" class="close"/></div>
+          <img src="images/manual/announces.jpg" class="img-responsive" alt="">
+        </div>
+      </div> -->
+<script type="text/javascript">
+  const popup = document.querySelector('.popup');
+  const close = document.querySelector('.close');
+
+  window.onload = function() {
+    setTimeout(function() {
+      popup.style.display = 'block';
+    }, 1000)
+  }
+
+  close.addEventListener('click', () => popup.style.display = 'none');
+</script>
 <?php include 'include/footer.php'; ?>
