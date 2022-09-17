@@ -89,7 +89,39 @@
       $emp_position = $check_fetch['users_position'];
 
     ?>
-    
+    <div class="row">
+
+<div class="col-lg-4 col-md-6 col-sm-12">
+  <div class="course">
+    <div class="preview" style="background: #2771D0;">
+      <h2 class="text-center text-light"><i class="uil uil-plane-departure"></i></h2>
+    </div>
+
+    <div class="info">
+      <h6>Boracay Travel Incentive</h6>
+      <h2><b><?php echo number_format($reward_sales) ?> / 400,000</b></h2>
+      <p class="text-danger pt-2">1 Ticket for every 400,000 sales (April - July)</p>
+    </div>
+  </div>
+  <br>
+</div>
+
+<div class="col-lg-4 col-md-6 col-sm-12">
+  <div class="course">
+    <div class="preview" style="background: #2771D0;">
+      <h2 class="text-center text-light"><i class="uil uil-plane-departure"></i></h2>
+    </div>
+
+    <div class="info">
+      <h6>Boracay Travel Incentive</h6>
+      <h2><b><?php echo number_format($reward_sales1) ?> / 400,000</b></h2>
+      <p class="text-danger pt-2">1 Ticket for every 400,000 sales (August - October)</p>
+    </div>
+  </div>
+  <br>
+</div>
+
+</div>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
