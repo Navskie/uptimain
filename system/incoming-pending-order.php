@@ -132,9 +132,6 @@
                                       <span class="badge badge-primary"><?php echo $status ?></span>
                                   </td>
                                   <td class="text-center"><a href="generate-poid.php?poidgenerate=<?php echo $poid ?>" class="btn btn-danger" target="_blank"><i class="fas fa-file-pdf"></i></a></td>
-                                  <td class="text-center">
-                                    <input type="checkbox" name="" id="" class="pt-2">
-                                  </td>
                                 </tr>
                                 <?php
                                   include 'backend/admin-order-image-modal.php';
