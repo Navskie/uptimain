@@ -93,54 +93,7 @@
     ?>
         <!-- START HERE -->
     <div class="container-fluid">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <?php
-          //$date2 = date('m-d-Y');
-            $slide_sql = "SELECT * FROM upti_announce WHERE announce_status = 'Active'";
-            $slide_qry = mysqli_query($connect, $slide_sql);
-            $number = 1;
-            while ($row = mysqli_fetch_array($slide_qry)) {
-          ?>
-              <?php
-                  if($number == 1) {
-              ?>
-                  <div class="carousel-item active">
-                      <img src="images/slide/<?php echo $row['announce_img']; ?>" alt="..." class="img-fluid">
-                      <div class="carousel-caption d-none d-md-block">
-                          <h5></h5>
-                          <p><?php echo $number; ?></p>
-                      </div>
-                  </div>
-              <?php
-                  } else {
-              ?>
-                  <div class="carousel-item">
-                      <img src="images/slide/<?php echo $row['announce_img']; ?>" alt="..." class="img-fluid">
-                      <div class="carousel-caption d-none d-md-block">
-                          <h5></h5>
-                          <p><?php echo $number; ?></p>
-                      </div>
-                  </div>
-              <?php
-                  }
-              ?>
-          <?php $number++; } ?>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
+      
     <br>
     <h5 class="mb-2"><br></h5>
     <?php
