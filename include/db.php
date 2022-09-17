@@ -15,7 +15,7 @@
                 $ip = $_SERVER['HTTP_CLIENT_IP'];
         }
     }
-    $purpose    = str_replace(array("name", "\n", "\t", " ", "-", "_"), NULL, strtolower(trim($purpose)));
+    $purpose    = str_replace(array("name", "\n", "\t", " ", "-", "_"), 'null', strtolower(trim($purpose)));
     $support    = array("country", "countrycode", "state", "region", "city", "location", "address");
     $continents = array(
         "AF" => "Africa",
