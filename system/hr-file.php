@@ -74,7 +74,7 @@
             while($row = mysqli_fetch_array($export_qry)) {    
                 $code = $row['users_code'];
                 
-                $get_trans = mysqli_query($connect, "SELECT trans_state, trans_subtotal, trans_poid, trans_country, trans_date, trans_fname, trans_status FROM upti_transaction WHERE trans_country = '$bansa' AND trans_status = '$status' AND trans_seller = '$code' AND trans_date BETWEEN '$date1' AND '$date2'");
+                $get_trans = mysqli_query($connect, "SELECT SUM(ol_php) AS salesto, trans_state, trans_subtotal, trans_poid, trans_country, trans_date, trans_fname, trans_status FROM upti_transaction INNER JOIN upti_order_list ON upti_transaction.trans_poid = upti_order_list.ol_poid WHERE trans_country = '$bansa' AND trans_status = '$status' AND trans_seller = '$code' AND trans_date BETWEEN '$date1' AND '$date2' GROUP BY trans_poid");
 
                 while ($sales = mysqli_fetch_array($get_trans)) {
                     $output .='
@@ -86,6 +86,7 @@
                         <td>'.$sales['trans_date'].'</td>
                         <td>'.$sales['trans_fname'].'</td>
                         <td>'.$sales['trans_subtotal'].'</td>
+                        <td>'.$sales['salesto'].'</td>
                         <td>'.$sales['trans_status'].'</td>
                     </tr>
                     ';
