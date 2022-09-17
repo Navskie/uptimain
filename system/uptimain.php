@@ -1,6 +1,6 @@
 <?php include 'include/header.php'; ?>
 <?php if ($_SESSION['role'] == 'UPTIMAIN' || $_SESSION['role'] == 'UPTIMAINS' || $_SESSION['role'] == 'UPTIHR') { ?>
-<?php include 'include/preloader.php'; ?>
+<?php //include 'include/preloader.php'; ?>
 <?php include 'include/navbar.php'; ?>
 <?php include 'include/sidebar.php'; ?>
 <?php
