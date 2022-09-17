@@ -21,6 +21,8 @@
                     <th>Date Triggered</th> 
                     <th>Poid</th>
                     <th>Country</th>
+                    <th>State</th>
+                    <th>Address</th>
                     <th>$ Sales Amount</th> 
                     <th>Php Sales Amount</th> 
                     <th>Status</th>
@@ -31,7 +33,7 @@
             // $excelData = implode('\t', array_values($fields)).'\n';
 
             // Fetch Records From Database
-            $export_sql = "SELECT * FROM upti_transaction INNER JOIN upti_order_list ON upti_transaction.trans_poid = upti_order_list.ol_poid WHERE upti_transaction.trans_status != 'On Order' AND upti_transaction.trans_date BETWEEN '$date1' AND '$date2' ORDER BY upti_transaction.trans_date ASC";
+            $export_sql = "SELECT trans_address, trans_poid, trans_state, trans_status, ol_date, ol_poid, ol_country, ol_subtotal, ol_php FROM upti_transaction INNER JOIN upti_order_list ON upti_transaction.trans_poid = upti_order_list.ol_poid WHERE upti_transaction.trans_status != 'On Order' AND upti_transaction.trans_date BETWEEN '$date1' AND '$date2' ORDER BY upti_transaction.trans_date ASC";
             // echo '<br>';
             $export_qry = mysqli_query($connect, $export_sql);
             $export_num = mysqli_num_rows($export_qry);
@@ -59,6 +61,8 @@
                             <td>'.$date_trigger.'</td>
                             <td>'.$row['ol_poid'].'</td>
                             <td>'.$row['ol_country'].'</td>
+                            <td>'.$row['trans_state'].'</td>
+                            <td>'.$row['trans_address'].'</td>
                             <td>'.$row['ol_subtotal'].'</td>
                             <td>'.$row['ol_php'].'</td>
                             <td>'.$caption.'</td>
@@ -86,9 +90,10 @@
                 <table class="table" bordered="1">
                 <tr>
                     <th>Date Order</th>
-                    
                     <th>Poid</th>
                     <th>Country</th>
+                    <th>State</th>
+                    <th>Address</th>
                     <th>$ Sales Amount</th>
                     <th>Php Sales Amount</th>
                     <th>Status</th>
@@ -99,7 +104,7 @@
             // $excelData = implode('\t', array_values($fields)).'\n';
 
             // Fetch Records From Database
-            $export_sql = "SELECT * FROM upti_order_list WHERE ol_country = '$country' AND ol_date BETWEEN '$date1' AND '$date2' ORDER BY ol_date ASC";
+            $export_sql = "SELECT ol_date, ol_poid, ol_country, trans_state, ol_subtotal, ol_php, ol_status FROM upti_order_list INNER JOIN upti_transaction ON upti_order_list.ol_poid = upti_transaction.trans_poid WHERE ol_country = '$country' AND ol_date BETWEEN '$date1' AND '$date2' ORDER BY ol_date ASC";
             // echo '<br>';
             $export_qry = mysqli_query($connect, $export_sql);
             $export_num = mysqli_num_rows($export_qry);
@@ -109,9 +114,10 @@
                     $output .='
                         <tr>
                             <td>'.$row['ol_date'].'</td>
-                            
                             <td>'.$row['ol_poid'].'</td>
                             <td>'.$row['ol_country'].'</td>
+                            <td>'.$row['trans_state'].'</td>
+                            <td>'.$row['trans_address'].'</td>
                             <td>'.$row['ol_subtotal'].'</td>
                             <td>'.$row['ol_php'].'</td>
                             <td>'.$row['ol_status'].'</td>
@@ -141,6 +147,8 @@
                     <th>Date</th>
                     <th>Poid</th>
                     <th>Country</th>
+                    <th>State</th>
+                    <th>Address</th>
                     <th>$ Sales Amount</th>
                     <th>Php Sales Amount</th>
                     <th>Status</th>
@@ -163,6 +171,8 @@
                             <td>'.$row['ol_date'].'</td>
                             <td>'.$row['ol_poid'].'</td>
                             <td>'.$row['ol_country'].'</td>
+                            <td>'.$row['trans_state'].'</td>
+                            <td>'.$row['trans_address'].'</td>
                             <td>'.$row['ol_subtotal'].'</td>
                             <td>'.$row['ol_php'].'</td>
                             <td>'.$row['trans_status'].'</td>
@@ -192,6 +202,8 @@
                     <th>Date</th>
                     <th>Poid</th>
                     <th>Country</th>
+                    <th>State</th>
+                    <th>Address</th>
                     <th>Mode of Payment</th>
                     <th>$ Sales Amount</th>
                     <th>₱ Sales Amount</th>
@@ -215,6 +227,8 @@
                             <td>'.$row['ol_date'].'</td>
                             <td>'.$row['ol_poid'].'</td>
                             <td>'.$row['ol_country'].'</td>
+                            <td>'.$row['trans_state'].'</td>
+                            <td>'.$row['trans_address'].'</td>
                             <td>'.$row['trans_mop'].'</td>
                             <td>'.$row['ol_subtotal'].'</td>
                             <td>'.$row['ol_php'].'</td>
@@ -250,6 +264,8 @@
                     <th>Reseller Name</th>
                     <th>Poid</th>
                     <th>Country</th>
+                    <th>State</th>
+                    <th>Address</th>
                     <th>$ Sales Amount</th>
                     <th>₱ Sales Amount</th>
                     <th>Status</th>
@@ -260,7 +276,7 @@
             // $excelData = implode('\t', array_values($fields)).'\n';
 
             // Fetch Records From Database
-            $export_sql = "SELECT * FROM upti_order_list INNER JOIN upti_activities ON upti_order_list.ol_poid = upti_activities.activities_poid WHERE upti_activities.activities_caption = 'Order Delivered' AND upti_order_list.ol_country = '$country' AND upti_activities.activities_date BETWEEN '$date1' AND '$date2' ORDER BY upti_activities.activities_date ASC";
+            $export_sql = "SELECT * FROM upti_order_list INNER JOIN upti_activities ON upti_order_list.ol_poid = upti_activities.activities_poid INNER JOIN upti_transaction ON upti_order_list.ol_poid = upti_transaction.trans_poid WHERE upti_activities.activities_caption = 'Order Delivered' AND upti_order_list.ol_country = '$country' AND upti_activities.activities_date BETWEEN '$date1' AND '$date2' ORDER BY upti_activities.activities_date ASC";
             // echo '<br>';
             $export_qry = mysqli_query($connect, $export_sql);
             $export_num = mysqli_num_rows($export_qry);
@@ -281,6 +297,8 @@
                             <td>'.$name.'</td>
                             <td>'.$row['ol_poid'].'</td>
                             <td>'.$row['ol_country'].'</td>
+                            <td>'.$row['trans_state'].'</td>
+                            <td>'.$row['trans_address'].'</td>
                             <td>'.$row['ol_subtotal'].'</td>
                             <td>'.$row['ol_php'].'</td>
                             <td>'.$row['ol_status'].'</td>
@@ -313,6 +331,8 @@
                     <th>Reseller Name</th>
                     <th>Poid</th>
                     <th>Country</th>
+                    <th>State</th>
+                    <th>Address</th>
                     <th>$ Sales Amount</th>
                     <th>Php Sales Amount</th>
                     <th>Status</th>
@@ -323,7 +343,7 @@
             // $excelData = implode('\t', array_values($fields)).'\n';
 
             // Fetch Records From Database
-            $export_sql = "SELECT * FROM upti_order_list INNER JOIN upti_activities ON upti_order_list.ol_poid = upti_activities.activities_poid WHERE upti_activities.activities_caption = 'Order Delivered' AND upti_activities.activities_date BETWEEN '$date1' AND '$date2' ORDER BY upti_activities.activities_date ASC";
+            $export_sql = "SELECT * FROM upti_order_list INNER JOIN upti_activities ON upti_order_list.ol_poid = upti_activities.activities_poid INNER JOIN upti_transaction ON upti_order_list.ol_poid = upti_transaction.trans_poid WHERE upti_activities.activities_caption = 'Order Delivered' AND upti_activities.activities_date BETWEEN '$date1' AND '$date2' ORDER BY upti_activities.activities_date ASC";
             // echo '<br>';
             $export_qry = mysqli_query($connect, $export_sql);
             $export_num = mysqli_num_rows($export_qry);
@@ -343,6 +363,8 @@
                             <td>'.$name.'</td>
                             <td>'.$row['ol_poid'].'</td>
                             <td>'.$row['ol_country'].'</td>
+                            <td>'.$row['trans_state'].'</td>
+                            <td>'.$row['trans_address'].'</td>
                             <td>'.$row['ol_subtotal'].'</td>
                             <td>'.$row['ol_php'].'</td>
                             <td>'.$row['ol_status'].'</td>
