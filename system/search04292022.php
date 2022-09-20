@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <div class="form-group">
-                                <input type="text" name="sp" class="form-control" placeholder="Search Poid / Name" required autocomplete="off">
+                                <input type="text" name="sp" class="form-control" placeholder="Search Poid / Customer Name" required autocomplete="off">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
