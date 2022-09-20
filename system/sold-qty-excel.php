@@ -17,7 +17,7 @@
     $country = $_POST['country'];
     $status = $_POST['status'];
 
-    $code_stmt = mysqli_query($connect, "SELECT ol_date, activities_date, users_name, ol_poid, ol_country, ol_desc, ol_qty, ol_status, activities_caption FROM upti_order_list INNER JOIN upti_users ON ol_seller = users_code INNER JOIN upti_activities ON ol_poid = activities_poid WHERE ol_date BETWEEN '$date1' AND '$date2'");
+    $code_stmt = mysqli_query($connect, "SELECT ol_price, ol_date, activities_date, users_name, ol_poid, ol_country, ol_desc, ol_qty, ol_status, activities_caption FROM upti_order_list INNER JOIN upti_users ON ol_seller = users_code INNER JOIN upti_activities ON ol_poid = activities_poid WHERE ol_date BETWEEN '$date1' AND '$date2'");
     if (mysqli_num_rows($code_stmt))
     {
       $fileName = 'Sold_Quantity_Report';
@@ -31,7 +31,8 @@
       $sheet->setCellValue('E1', 'COUNTRY');
       $sheet->setCellValue('F1', 'DESCRIPTION');
       $sheet->setCellValue('G1', 'QTY');
-      $sheet->setCellValue('H1', 'STATUS');
+      $sheet->setCellValue('H1', 'PRICE');
+      $sheet->setCellValue('I1', 'STATUS');
 
       $rowCount = 2;
       // data loop
@@ -48,7 +49,8 @@
         $sheet->setCellValue('E'.$rowCount, $data['ol_country']);
         $sheet->setCellValue('F'.$rowCount, $data['ol_desc']);
         $sheet->setCellValue('G'.$rowCount, $data['ol_qty']);
-        $sheet->setCellValue('H'.$rowCount, $status_remark);
+        $sheet->setCellValue('H'.$rowCount, $data['ol_price']);
+        $sheet->setCellValue('I'.$rowCount, $status_remark);
         $rowCount++;
       }
 
