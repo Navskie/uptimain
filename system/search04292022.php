@@ -1,5 +1,5 @@
 <?php include 'include/header.php'; ?>
-<?php //include 'include/preloader.php'; ?>
+<?php include 'include/preloader.php'; ?>
 <?php include 'include/navbar.php'; ?>
 <?php include 'include/sidebar.php'; ?>
 <?php
@@ -32,9 +32,13 @@
     <!-- /.content-header -->
     <?php
         if (isset($_POST['search-poid'])) {
-            $poid_number = $_POST['sp'];
-            $order_sql = "SELECT * FROM upti_transaction WHERE trans_poid = '$poid_number' AND trans_country = '$employee'";
-            $order_qry = mysqli_query($connect, $order_sql);
+          $poid_number = $_POST['sp'];
+          $order_sql = "SELECT * FROM upti_transaction WHERE trans_poid = '$poid_number' AND trans_country = '$employee'";
+          $order_qry = mysqli_query($connect, $order_sql);
+
+          if (mysqli_num_rows($order_qry) < 1) {
+              $order_qry = mysqli_query($connect, "SELECT * FROM upti_transaction WHERE trans_country = '$employee' AND trans_fname LIKE '%".$poid_number."%'");
+          }
         } else {
             $order_sql = "SELECT * FROM upti_transaction WHERE trans_poid = 'Ronnel C. Navarro'";
             $order_qry = mysqli_query($connect, $order_sql);
@@ -50,7 +54,7 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <div class="form-group">
-                                <input type="text" name="sp" class="form-control" placeholder="Search Poid" required autocomplete="off">
+                                <input type="text" name="sp" class="form-control" placeholder="Search Poid / Name" required autocomplete="off">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
