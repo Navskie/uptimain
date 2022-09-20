@@ -116,7 +116,7 @@
                               <option value="Pending">Pending</option>
                               <option value="On Process">On Process</option>
                               <option value="In Transit">In Transit</option>
-                              <option value="Delivered">Delivered</option>
+                              <option value="Order Delivered">Delivered</option>
                               <option value="RTS">RTS</option>
                             </select>
                           </div>
@@ -130,6 +130,8 @@
                 </div><!-- CARD End -->
               </div><!-- COL-3 End -->
               <!-- Sold Quantity End -->
+
+              
             </div><!-- ROW End -->
         </section>
   </div>

@@ -424,12 +424,13 @@
                     <th>Item Code</th>
                     <th>Item Description</th>
                     <th>Quantity</th>
+                    <th>Price</th>
                     <th>Status</th>
                 <tr>
             ';
 
             // Fetch Records From Database
-            $export_sql = "SELECT trans_date, trans_poid, ol_code, ol_desc, ol_qty, trans_country, trans_status, trans_seller FROM upti_transaction INNER JOIN upti_order_list ON upti_transaction.trans_poid = upti_order_list.ol_poid WHERE upti_transaction.trans_status != 'On Order' AND upti_transaction.trans_date BETWEEN '$date1' AND '$date2' ORDER BY upti_transaction.trans_date ASC";
+            $export_sql = "SELECT ol_price, trans_date, trans_poid, ol_code, ol_desc, ol_qty, trans_country, trans_status, trans_seller FROM upti_transaction INNER JOIN upti_order_list ON upti_transaction.trans_poid = upti_order_list.ol_poid WHERE upti_transaction.trans_status != 'On Order' AND upti_transaction.trans_date BETWEEN '$date1' AND '$date2' ORDER BY upti_transaction.trans_date ASC";
             // $export_sql = "SELECT * FROM upti_transaction";
             // echo '<br>';
             $export_qry = mysqli_query($connect, $export_sql);
@@ -467,6 +468,7 @@
                         <td>'.$row['ol_code'].'</td>
                         <td>'.$row['ol_desc'].'</td>
                         <td>'.$row['ol_qty'].'</td>
+                        <td>'.$row['ol_price'].'</td>
                         <td>'.$caption.'</td>
                     </tr>
                     ';

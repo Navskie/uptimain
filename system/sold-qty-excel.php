@@ -17,7 +17,19 @@
     $country = $_POST['country'];
     $status = $_POST['status'];
 
-    $code_stmt = mysqli_query($connect, "SELECT ol_price, ol_date, activities_date, users_name, ol_poid, ol_country, ol_desc, ol_qty, ol_status, activities_caption FROM upti_order_list INNER JOIN upti_users ON ol_seller = users_code INNER JOIN upti_activities ON ol_poid = activities_poid WHERE ol_date BETWEEN '$date1' AND '$date2'");
+    if ($status === '' && $country === '') {
+      $code_stmt = mysqli_query($connect, "SELECT ol_price, ol_date, users_name, ol_poid, ol_country, ol_desc, ol_qty, ol_status FROM upti_order_list INNER JOIN upti_users ON ol_seller = users_code WHERE ol_date BETWEEN '$date1' AND '$date2'
+      ");
+    } elseif ($status !== 'Order Delivered' && $country === '') {
+
+    } elseif ($status === 'Order Delivered' && $country === '') {
+
+    } elseif ($status !== 'Order Delivered' && $country === '') {
+
+    } elseif ($status === 'Order Delivered' && $country === '') {
+
+    }
+
     if (mysqli_num_rows($code_stmt))
     {
       $fileName = 'Sold_Quantity_Report';
@@ -37,20 +49,25 @@
       $rowCount = 2;
       // data loop
       foreach ($code_stmt as $data) {
-        $status_remark = $data['activities_caption'];
-        if ($status_remark === 'Order Delivered') {
-          $status_remark = 'Delivered';
+        $poid = $data['ol_poid'];
+        $status = mysqli_query($connect, "SELECT activities_date FROM upti_activities WHERE activities_poid = '$poid' AND activities_caption = 'Order Delivered'");
+        $status_fetch = mysqli_fetch_array($status);
+
+        if (mysqli_num_rows($status) > 0) {
+          $date_triggered = $status_fetch['activities_date'];
+        } else {
+          $date_triggered = '';
         }
 
         $sheet->setCellValue('A'.$rowCount, $data['ol_date']);
-        $sheet->setCellValue('B'.$rowCount, $data['activities_date']);
+        $sheet->setCellValue('B'.$rowCount, $date_triggered);
         $sheet->setCellValue('C'.$rowCount, $data['users_name']);
         $sheet->setCellValue('D'.$rowCount, $data['ol_poid']);
         $sheet->setCellValue('E'.$rowCount, $data['ol_country']);
         $sheet->setCellValue('F'.$rowCount, $data['ol_desc']);
         $sheet->setCellValue('G'.$rowCount, $data['ol_qty']);
         $sheet->setCellValue('H'.$rowCount, $data['ol_price']);
-        $sheet->setCellValue('I'.$rowCount, $status_remark);
+        $sheet->setCellValue('I'.$rowCount, $data['ol_status']);
         $rowCount++;
       }
 
