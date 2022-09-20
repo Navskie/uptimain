@@ -18,7 +18,7 @@
     $status = $_POST['status'];
 
     if ($status === '' && $country === '') {
-      $code_stmt = mysqli_query($connect, "SELECT ol_price, ol_date, users_name, ol_poid, ol_country, ol_desc, ol_qty, ol_status FROM upti_order_list INNER JOIN upti_users ON ol_seller = users_code WHERE ol_date BETWEEN '$date1' AND '$date2'
+      $code_stmt = mysqli_query($connect, "SELECT ol_php, ol_date, users_name, ol_poid, ol_country, ol_desc, ol_qty, ol_status FROM upti_order_list INNER JOIN upti_users ON ol_seller = users_code WHERE ol_date BETWEEN '$date1' AND '$date2'
       ");
     } elseif ($status !== 'Order Delivered' && $country === '') {
 
@@ -43,7 +43,7 @@
       $sheet->setCellValue('E1', 'COUNTRY');
       $sheet->setCellValue('F1', 'DESCRIPTION');
       $sheet->setCellValue('G1', 'QTY');
-      $sheet->setCellValue('H1', 'PRICE');
+      $sheet->setCellValue('H1', 'PESO');
       $sheet->setCellValue('I1', 'STATUS');
 
       $rowCount = 2;
@@ -66,7 +66,7 @@
         $sheet->setCellValue('E'.$rowCount, $data['ol_country']);
         $sheet->setCellValue('F'.$rowCount, $data['ol_desc']);
         $sheet->setCellValue('G'.$rowCount, $data['ol_qty']);
-        $sheet->setCellValue('H'.$rowCount, $data['ol_price']);
+        $sheet->setCellValue('H'.$rowCount, $data['ol_php']);
         $sheet->setCellValue('I'.$rowCount, $data['ol_status']);
         $rowCount++;
       }
