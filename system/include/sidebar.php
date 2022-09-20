@@ -2022,6 +2022,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="admin-info.php" class="nav-link">
+              <i class="nav-icon uil uil-dollar-alt"></i>
+              <p>
+                Reseller Information
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
