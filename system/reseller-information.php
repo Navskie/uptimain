@@ -6,15 +6,22 @@
 
     $Uid = $_SESSION['uid'];
     $Ucode = $_SESSION['code'];
+    $Urole = $_SESSION['role'];
 
     date_default_timezone_set("Asia/Manila"); 
     $date_today = date('m-d-Y');
 
-    $count_sql = "SELECT users_reseller, users_role, users_main, users_code FROM upti_users WHERE users_code = '$Ucode'";
+    $count_sql = "SELECT users_reseller, users_role, users_main, users_code, users_main FROM upti_users WHERE users_code = '$Ucode'";
     $count_qry = mysqli_query($connect, $count_sql);
     $count_fetch = mysqli_fetch_array($count_qry);
 
     $Ucount = $count_fetch['users_reseller'];
+
+    if ($Urole == 'UPTIOSR') {
+      $Ureseller = $count_fetch['users_main'];
+    } else {
+      $Ureseller = $Ucode;
+    }
 
     $poid = 'RS'.$Uid.'-'.$Ucount;
 
@@ -28,6 +35,28 @@
         $mobile = $_POST['mobile'];
         $address = $_POST['address'];
         $country = $_POST['country'];
+
+        $reseller_earning = mysqli_query($connect, "INSERT INTO upti_reseller (
+          reseller_poid,
+          reseller_name,
+          reseller_code,
+          reseller_email,
+          reseller_osr,
+          reseller_main,
+          reseller_address,
+          reseller_mobile,
+          reseller_date
+        ) VALUES (
+          '$poid',
+          '$fname',
+          '$reseller_code',
+          '$email',
+          '$Ucode',
+          '$Ureseller',
+          '$address',
+          '$mobile',
+          '$date_today'
+        )");
 
         $info = mysqli_query($connect, "INSERT INTO upti_transaction 
             (

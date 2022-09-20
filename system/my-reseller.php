@@ -32,7 +32,7 @@
                                     </tr>
                                 </thead>
                                 <?php
-                                    $account = "SELECT * FROM upti_reseller INNER JOIN upti_transaction ON upti_transaction.trans_poid = upti_reseller.reseller_poid INNER JOIN upti_users ON upti_reseller.reseller_code = upti_users.users_code WHERE upti_reseller.reseller_osr = '$creator_code'";
+                                    $account = "SELECT * FROM upti_reseller INNER JOIN upti_transaction ON upti_transaction.trans_poid = upti_reseller.reseller_poid INNER JOIN upti_users ON upti_reseller.reseller_code = upti_users.users_code WHERE upti_transaction.trans_seller = '$creator_code'";
                                     $account_qry = mysqli_query($connect, $account);
                                     $number = 1;
                                     while ($account_fetch = mysqli_fetch_array($account_qry)) {
