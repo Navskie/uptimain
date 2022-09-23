@@ -52,10 +52,10 @@
                 $item_code = $_POST['itemcode'];
 
                 $code_stmt = "SELECT code_name, items_desc, items_status FROM upti_code
-                INNER JOIN upti_items ON upti_code.code_name = upti_items.items_code WHERE items_desc LIKE '%".$item_code."%'
+                INNER JOIN upti_items ON upti_code.code_name = upti_items.items_code WHERE items_code LIKE '%".$item_code."%'
                 UNION
                 SELECT code_name, package_desc, package_status FROM upti_code
-                INNER JOIN upti_package ON upti_code.code_name = upti_package.package_code WHERE package_desc LIKE '%".$item_code."%'
+                INNER JOIN upti_package ON upti_code.code_name = upti_package.package_code WHERE package_code LIKE '%".$item_code."%'
                 ORDER BY code_name DESC";
             } else {
                 $code_stmt = "SELECT code_name, items_desc, items_status FROM upti_code

@@ -41,9 +41,11 @@
     if ($get_transaction_num == 1) {
         $mode_of_payment = $get_transaction_fetch['trans_mop'];
         $customer_country = $get_transaction_fetch['trans_country'];
+        $csid = $get_transaction_fetch['trans_csid'];
     } else {
         $mode_of_payment = '';
         $customer_country = '';
+        $csid = '';
     }
 
     $check_boga_sql_2 = "SELECT SUM(ol_qty) AS pq FROM upti_code INNER JOIN upti_order_list ON upti_code.code_name = upti_order_list.ol_code WHERE ol_poid = '$poid' AND code_category = 'BUY ONE GET ANY'";
@@ -356,7 +358,7 @@
                                 echo $mail->ErrorInfo;
                             }
                             // SEND TO STOCKIST EMAIL
-            
+
                             flash("order", "Thank you! Your order was successfully submitted!");
                             header('location: my-order.php');
             
@@ -616,7 +618,7 @@
                         if(!$mail->Send()){
                             echo $mail->ErrorInfo;
                         }
-                        // SEND TO STOCKIST EMAIL
+                        // // SEND TO STOCKIST EMAIL
 
                         flash("order", "Thank you! Your order was successfully submitted!");
                         header('location: my-order.php');

@@ -26,6 +26,20 @@
         $amount = $transaction_fetch['trans_subtotal'];
         $mod = $transaction_fetch['trans_mop'];
         $trans_date = $transaction_fetch['trans_date'];
+        $trans_state = $transaction_fetch['trans_state'];
+        $csid = $transaction_fetch['trans_csid'];
+
+          // STOCKIST PERCENTAGE
+          if ($country == 'CANADA') {
+            if ($trans_state !== 'ALBERTA' || $trans_state === '') {
+              $trans_state = 'ALL';
+            }
+          } else {
+            $trans_state = 'ALL';
+          }
+          $stockist_stmt = mysqli_query($connect, "SELECT * FROM stockist WHERE stockist_country = '$country' AND stockist_state = '$trans_state'");
+          $stockist_f = mysqli_fetch_array($stockist_stmt);
+          $stockist = $stockist_f['stockist_code'];
 
         $april_date = '04-11-2022';
 
@@ -146,7 +160,7 @@
 
             $POID_ID = $get_like_fetch['poids'];
             
-            if ($POID_ID == 'R') {
+            if ($POID_ID === 'R') {
                 $tot_earn = $ol_php * 0.10;
                 // echo '<br>';
                 $tax = $tot_earn * 0.05;
@@ -172,13 +186,43 @@
                 $login_sql = "UPDATE upti_users SET users_status = 'Active' WHERE users_code = '$maycode'";
                 $login_qry = mysqli_query($connect, $login_sql);
                 // end earnings
-            } elseif ($POID_ID == 'P') {
+
+                // added stockist percentage
+                $stockist_wallet = "SELECT * FROM stockist_wallet WHERE w_id = '$stockist'";
+                $stockist_wallet_qry = mysqli_query($connect, $stockist_wallet);
+                $stockist_balance = mysqli_fetch_array($stockist_wallet_qry);
+
+                $s_wallet = $stockist_balance['w_earning'] + $tax;
+
+                $update_stockist_wallet = mysqli_query($connect, "UPDATE stockist_wallet SET w_earning = '$s_wallet' WHERE w_id = '$stockist'");
+
+                $remarks_wallet = "Stockist Percentage for POID ".$poid." amount of ".$tax;
+
+                $history_wallet = mysqli_query($connect, "INSERT INTO stockist_percentage (
+                  p_poid,
+                  p_code,
+                  p_amount,
+                  p_desc,
+                  p_time,
+                  p_date,
+                  p_pack
+                ) VALUES (
+                  '$poid',
+                  '$stockist',
+                  '$tax',
+                  '$remarks_wallet',
+                  '$time',
+                  '$datenow',
+                  'Reseller Package Order'
+                )");
+
+            } elseif ($POID_ID === 'P') {
                 if($trans_date <= $april_date) {
                     $tot_earn = $ol_php * 0.30;
                 } else {
                     $tot_earn = $ol_php * 0.40;
                 }
-                
+                // echo $tot_earn;
                 // echo '<br>';
                 $tax = $tot_earn * 0.05;
                 // echo '<br>';
@@ -190,7 +234,6 @@
                     $remarks = 'You Received 40% Comission Product Worth of '.$amount.' ['.$country.']';
                 }
                 
-    
                 $creator_earn = $remain_points + $sales_earnings;
                 // echo '<br>';
                 $update_earn = "UPDATE upti_reseller SET reseller_earning = '$creator_earn' WHERE reseller_code = '$users_code'";
@@ -200,6 +243,36 @@
                 $earn_history_sql = mysqli_query($connect, $earn_history);
                 // end earnings
                 // echo '<br>';
+
+                // added stockist percentage
+                $stockist_wallet = "SELECT * FROM stockist_wallet WHERE w_id = '$stockist'";
+                $stockist_wallet_qry = mysqli_query($connect, $stockist_wallet);
+                $stockist_balance = mysqli_fetch_array($stockist_wallet_qry);
+
+                $s_wallet = $stockist_balance['w_earning'] + $tax;
+
+                $update_stockist_wallet = mysqli_query($connect, "UPDATE stockist_wallet SET w_earning = '$s_wallet' WHERE w_id = '$stockist'");
+
+                $remarks_wallet = "Stockist Percentage for POID ".$poid." amount of ".$tax;
+
+                $history_wallet = mysqli_query($connect, "INSERT INTO stockist_percentage (
+                  p_poid,
+                  p_code,
+                  p_amount,
+                  p_desc,
+                  p_time,
+                  p_date,
+                  p_pack
+                ) VALUES (
+                  '$poid',
+                  '$stockist',
+                  '$tax',
+                  '$remarks_wallet',
+                  '$time',
+                  '$datenow',
+                  'Regular Order'
+                )");
+
                 if ($users_creator != 'UPTIMAIN') {
                     // echo '<br>';
                 // SALES
@@ -335,6 +408,35 @@
     
                 $earn_history = "INSERT INTO upti_earning (earning_code, earning_poid, earning_earnings, earning_tax, earning_remarks, earning_status, earning_name) VALUES ('$users_code', '$poid', '$sales_earnings', '$tax', '$remarks', 'Sales', '$seller_id')";
                 $earn_history_sql = mysqli_query($connect, $earn_history);
+
+                // added stockist percentage
+                $stockist_wallet = "SELECT * FROM stockist_wallet WHERE w_id = '$stockist'";
+                $stockist_wallet_qry = mysqli_query($connect, $stockist_wallet);
+                $stockist_balance = mysqli_fetch_array($stockist_wallet_qry);
+
+                $s_wallet = $stockist_balance['w_earning'] + $tax;
+
+                $update_stockist_wallet = mysqli_query($connect, "UPDATE stockist_wallet SET w_earning = '$s_wallet' WHERE w_id = '$stockist'");
+
+                $remarks_wallet = "Stockist Percentage for POID ".$poid." amount of ".$tax;
+
+                $history_wallet = mysqli_query($connect, "INSERT INTO stockist_percentage (
+                  p_poid,
+                  p_code,
+                  p_amount,
+                  p_desc,
+                  p_time,
+                  p_date,
+                  p_pack
+                ) VALUES (
+                  '$poid',
+                  '$stockist',
+                  '$tax',
+                  '$remarks_wallet',
+                  '$time',
+                  '$datenow',
+                  'Reseller Package Order'
+                )");
                 // end earnings
             } elseif ($POID_ID == 'P') {
                 if($trans_date <= $april_date) {
@@ -367,6 +469,35 @@
                 $earning_fetch2 = mysqli_fetch_array($earning_qry2);
     
                 $mycreator = $earning_fetch2['users_creator'];
+
+                // added stockist percentage
+                $stockist_wallet = "SELECT * FROM stockist_wallet WHERE w_id = '$stockist'";
+                $stockist_wallet_qry = mysqli_query($connect, $stockist_wallet);
+                $stockist_balance = mysqli_fetch_array($stockist_wallet_qry);
+
+                $s_wallet = $stockist_balance['w_earning'] + $tax;
+
+                $update_stockist_wallet = mysqli_query($connect, "UPDATE stockist_wallet SET w_earning = '$s_wallet' WHERE w_id = '$stockist'");
+
+                $remarks_wallet = "Stockist Percentage for POID ".$poid." amount of ".$tax;
+
+                $history_wallet = mysqli_query($connect, "INSERT INTO stockist_percentage (
+                  p_poid,
+                  p_code,
+                  p_amount,
+                  p_desc,
+                  p_time,
+                  p_date,
+                  p_pack
+                ) VALUES (
+                  '$poid',
+                  '$stockist',
+                  '$tax',
+                  '$remarks_wallet',
+                  '$time',
+                  '$datenow',
+                  'Regular Order'
+                )");
     
                 if ($mycreator != 'UPTIMAIN') {
     
@@ -614,12 +745,23 @@
         
         $ol_sql = "UPDATE upti_order_list SET ol_status = 'Delivered' WHERE ol_poid = '$poid'";
         $ol_qry = mysqli_query($connect, $ol_sql);
+        
+        $loyalty_stmt = mysqli_query($connect, "SELECT * FROM upti_loyalty WHERE loyalty_code = '$csid'");
+        $fetching_loyalty = mysqli_fetch_array($loyalty_stmt);
+        if (mysqli_num_rows($loyalty_stmt) > 0) {
+          $number_of_loyalty = $fetching_loyalty['loyalty_number'] + 1;
+          $update_loyalty = mysqli_query($connect, "UPDATE upti_loyalty SET loyalty_number = '$number_of_loyalty' WHERE loyalty_code = '$csid'");
+        } else {
+          $add_loyalty = mysqli_query($connect, "INSERT INTO upti_loyalty (loyalty_code, loyalty_number) VALUES ('$csid', '1')");
+        }
 
+        $check_boga_sql =  "SELECT * FROM upti_code INNER JOIN upti_order_list ON ol_code = code_name WHERE code_category = 'LOYALTY' AND ol_poid = '$poid'";
+        $check_boga = mysqli_query($connect, $check_boga_sql);
+
+        if (mysqli_num_rows($check_boga) > 0) {
+          $update_loyalty = mysqli_query($connect, "UPDATE upti_loyalty SET loyalty_number = '0' WHERE loyalty_code = '$csid'");
+        }
         // // stockist commision
-        // $stockist_stmt = mysqli_query($connect, "SELECT * FROM stockist WHERE stockist_country = '$country'");
-        // $stockist_f = mysqli_fetch_array($stockist_stmt);
-
-        // $stockist = $stockist_f['stockist_code'];
         
         // $order_list = mysqli_query($connect, "SELECT * FROM upti_order_list WHERE ol_poid = '$poid'");
         // while ($order = mysqli_fetch_array($order_list)) {
@@ -814,6 +956,8 @@
         //     $stockist_w = mysqli_query($connect, "UPDATE stockist_wallet SET w_earning = '$stockist_wallet' WHERE w_id = '$stockist'");
         //   }
         // }
+
+
         // // stockist end
 ?>
     <script>alert('Order Status has been changed to Delivered Successfully');window.location.href = '../poid-list.php?id=<?php echo $id ?>';</script>

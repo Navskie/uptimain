@@ -19,6 +19,7 @@
     $get_poid_fetch = mysqli_fetch_array($get_poid_qry);
 
     $poid = $get_poid_fetch['trans_poid'];
+    $csid = $get_poid_fetch['trans_csid'];
 
     $getnamex = "SELECT * FROM upti_users WHERE users_id = '$uid'";
     $getnamex_qry = mysqli_query($connect, $getnamex);
@@ -45,8 +46,14 @@
     $update_stats1 = "UPDATE upti_order_list SET ol_status = 'Canceled' WHERE ol_poid = '$poid'";
     $update_stats_qyr1 = mysqli_query($connect, $update_stats1);
 
-    flash("success", "Order Status has been changed to Cancel Successfully");
+    $remove_free = mysqli_query($connect, "SELECT * FROM upti_loyalty WHERE loyalty_code = '$csid'");
+    $loyalty_fetch = mysqli_fetch_array($remove_free);
+    if(mysqli_num_rows($remove_free) > 0) {
+      $remain_loyalty = $loyalty_fetch['loyalty_number'] - 1;
+      $removefreelist = mysqli_query($connect, "UPDATE upti_loyalty SET loyalty_number = '$remain_loyalty' WHERE loyalty_code = '$csid'");
+    }
 
+    flash("success", "Order Status has been changed to Cancel Successfully");
 
     $stockist = mysqli_query($connect, "SELECT * FROM stockist WHERE stockist_code = '$uicode'");
     if (mysqli_num_rows($stockist) > 0 || $role == 'BRANCH') {

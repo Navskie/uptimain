@@ -48,6 +48,8 @@
             }
             // Get Users Code & Users Upline Code
 
+            $year = date('Y');
+
             $poid = 'PD'.$Uid.'-'.$Ucount;
             // Poid Number / Reference Number
 
@@ -66,6 +68,7 @@
                 $office_state = $get_transaction_fetch['trans_state'];
                 $terms = $get_transaction_fetch['trans_terms'];
                 $office_check_status = $get_transaction_fetch['trans_office_status'];
+                $csid = $get_transaction_fetch['trans_csid'];
             } else {
                 $mode_of_payment = '';
                 $customer_country = '';
@@ -76,6 +79,11 @@
                 $office_state = '';
                 $terms = '';
                 $office_check_status = '';
+                $csid = '';
+            }
+
+            if ($csid === '') {
+              $csid = $year.$Uid.$Ucount;
             }
 
             $get_order_list = "SELECT * FROM upti_order_list WHERE ol_poid = '$poid'";
@@ -90,7 +98,8 @@
                 <!-- Customer Information Start -->
                 <div class="card">
                     <div class="card-body login-card-body">
-                        <h5 class="text-info">Customer Information</h5>
+                        <h5 class="text-info">Information<span class="float-right">CSID: <?php echo $csid; ?></span></h5>
+                        
                         <hr>
                         <form action="order-information.php" method="post">
                             <?php
@@ -445,6 +454,44 @@
                                 </form>
                                 <?php } ?>
                                 <!-- GET FREE END -->
+                                <!-- LOYALTY -->
+                                <?php
+                                    $check_free2 = "SELECT * FROM upti_loyalty WHERE loyalty_code = '$csid'";
+                                    $check_free2_sql = mysqli_query($connect, $check_free2);
+                                    $check_free2_fetch = mysqli_fetch_array($check_free2_sql);
+                                    $check_num_free2 = mysqli_num_rows($check_free2_sql);
+                                    
+                                    if ($check_num_free2 == 0) {
+                                        $num_free2 = 0;
+                                    } else {
+                                        $num_free2 = $check_free2_fetch['loyalty_number'];
+                                    }
+
+                                    if ($num_free2 >= 5 && $Urole == 'UPTIOSR') {
+                                ?>
+                                <form action="loyalty.php" method="post">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <select class="form-control select2bs4" style="width: 100%;" name="free2">
+                                                <?php 
+                                                    $product_sql = "SELECT * FROM upti_items INNER JOIN upti_code ON upti_items.items_code = upti_code.code_name WHERE items_status = 'Active' AND code_category = 'LOYALTY'";
+                                                    $product_qry = mysqli_query($connect, $product_sql);
+                                                ?>
+                                                <option value="">Select Loyalty Item</option>
+                                                <?php
+                                                    while ($product = mysqli_fetch_array($product_qry)) {
+                                                ?>
+                                                <option value="<?php echo $product['items_code'] ?>">[<?php echo $product['items_code'] ?>] → <?php echo $product['items_desc'] ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-3">
+                                            <button class="btn btn-danger rounded-0 form-control" name="get_free2">LOYALTY</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <?php } ?>
+                                <!-- LOYALTY END -->
                             </div>
                         </div>
                         <!-- Add item End -->

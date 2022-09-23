@@ -29,7 +29,10 @@
     }
     // Get Users Code & Users Upline Code
 
+    $year = date('Y');
+
     $poid = 'PD'.$Uid.'-'.$Ucount;
+    $csid = $year.$Uid.$Ucount;
     // Poid Number / Reference Number
 
     if (isset($_POST['saveinformation'])) {
@@ -69,7 +72,8 @@
                 trans_status,
                 trans_admin,
                 trans_office,
-                trans_state
+                trans_state,
+                trans_csid
             ) VALUES (
                 '$poid',
                 '$date_today',
@@ -83,7 +87,8 @@
                 'On Order',
                 'UPTIMAIN',
                 '$office',
-                '$state'
+                '$state',
+                '$csid'
             )";
             $save_qry = mysqli_query($connect, $save_sql);
 
