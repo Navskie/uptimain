@@ -1501,6 +1501,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="s_ph.php" class="nav-link">
+              <i class="nav-icon uil uil-globe"></i>
+              <p>
+                Stocks
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
