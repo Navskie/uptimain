@@ -48,6 +48,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="s_ph.php" class="nav-link">
+              <i class="nav-icon uil uil-globe"></i>
+              <p>
+                Stocks
+              </p>
+            </a>
+          </li>
           <li class="nav-header">Manage Accounts</li>
           <li class="nav-item"> 
             <a href="stock-branch.php" class="nav-link">
@@ -338,6 +346,14 @@
             <i class="nav-icon uil uil-dashboard"></i>
               <p>
                 Dashboard
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="s_ph.php" class="nav-link">
+              <i class="nav-icon uil uil-globe"></i>
+              <p>
+                Stocks
               </p>
             </a>
           </li>
@@ -697,6 +713,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="s_ph.php" class="nav-link">
+              <i class="nav-icon uil uil-globe"></i>
+              <p>
+                Stocks
+              </p>
+            </a>
+          </li>
           <li class="nav-header">Manage OSR</li>
           <li class="nav-item"> 
             <a href="Osrlist.php" class="nav-link">
@@ -1012,6 +1036,14 @@
               <i class="nav-icon uil uil-ticket"></i>
               <p>
                 Ticket
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="s_ph.php" class="nav-link">
+              <i class="nav-icon uil uil-globe"></i>
+              <p>
+                Stocks
               </p>
             </a>
           </li>
