@@ -1039,14 +1039,14 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="s_ph.php" class="nav-link">
               <i class="nav-icon uil uil-globe"></i>
               <p>
                 Stocks
               </p>
             </a>
-          </li>
+          </li> -->
           <!-- EXCLUSIVE -->
           <?php
             $code_reseller = $_SESSION['code'];
@@ -1533,14 +1533,14 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="s_ph.php" class="nav-link">
               <i class="nav-icon uil uil-globe"></i>
               <p>
                 Stocks
               </p>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
