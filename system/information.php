@@ -234,7 +234,7 @@
                                     $npassword = $oldpassword;
                                 }
 
-                                if($oldpassword == $password) {
+
 
                                     if ($img_name == '') {
                                         if ($username == $user) {
@@ -292,11 +292,7 @@
                                         }
                                     }
                                     
-                                } else {
-                                    echo '<div class="alert alert-danger rounded-0" role="alert">
-                                        Incorrect Password, Please Try Again!
-                                    </div>';
-                                }
+
                             }
                         ?>
                         <form action="" method="post" enctype="multipart/form-data">
