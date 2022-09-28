@@ -745,6 +745,8 @@
         
         $ol_sql = "UPDATE upti_order_list SET ol_status = 'Delivered' WHERE ol_poid = '$poid'";
         $ol_qry = mysqli_query($connect, $ol_sql);
+
+        $account_process = mysqli_query($connect, "UPDATE upti_users SET users_status = 'Active' WHERE users_poid = '$poid'");
         
         $loyalty_stmt = mysqli_query($connect, "SELECT * FROM upti_loyalty WHERE loyalty_code = '$csid'");
         $fetching_loyalty = mysqli_fetch_array($loyalty_stmt);
