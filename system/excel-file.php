@@ -504,6 +504,7 @@
                     <th>Item Code</th>
                     <th>Item Description</th>
                     <th>Quantity</th>
+                    <th>peso</th>
                     <th>Status</th>
                 <tr>
             ';
@@ -532,6 +533,7 @@
                             <td>'.$row['ol_code'].'</td>
                             <td>'.$row['ol_desc'].'</td>
                             <td>'.$row['ol_qty'].'</td>
+                            <td>'.$row['ol_php'].'</td>
                             <td>'.$row['ol_status'].'</td>
                         </tr>
                     ';

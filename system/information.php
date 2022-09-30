@@ -49,7 +49,7 @@
                 <!-- Customer Information Start -->
                 <div class="card">
                     <div class="card-body login-card-body">
-                        <h5 class="text-info">Personal Information</h5>
+                        <h5 class="text-info">Personal Information <?php $SCode = $_SESSION['code']; ?></h5>
                         <hr>
                         <div class="row">
                             <div class="col-2"></div>
