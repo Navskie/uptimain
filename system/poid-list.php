@@ -180,9 +180,9 @@
                                             echo '<p class="text-right">';
                                             echo $codedata =  $data['ol_code'];
                                             echo ' ';
-                                            $sum_price = mysqli_query($connect, "SELECT * FROM upti_country WHERE country_code = '$codedata' AND country_name = 'PHILIPPINES'");
+                                            $sum_price = mysqli_query($connect, "SELECT * FROM upti_country WHERE country_code = '$codedata'");
                                             $sum_fetch = mysqli_fetch_array($sum_price);
-                                            echo $php = $sum_fetch['country_price'];
+                                            echo $php = $sum_fetch['country_total_php'];
                                             echo '<br>';
                                             echo '</p>';
                                             // $total = 
