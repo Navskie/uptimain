@@ -19,6 +19,7 @@
     $order = mysqli_fetch_array($order_qry);
     
     $myid = $_SESSION['uid'];
+    $phpprice = $order['ol_php'];
 
     $get_country_sql = "SELECT * FROM upti_users WHERE users_id = '$myid'";
     $get_country_qrys = mysqli_query($connect, $get_country_sql);
@@ -167,6 +168,14 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <p class="text-right"><?php echo $transact['trans_subtotal'] ?></p>
                                     </div>
+                                    <?php if ($_SESSION['uid'] == '774') { ?>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <b>Peso Kier:</b>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <p class="text-right"><?php echo $phpprice ?></p>
+                                    </div>
+                                    <?php } ?>
                                     <div class="col-12">
                                         <span>Order Status:</span>
                                         <br><br>
