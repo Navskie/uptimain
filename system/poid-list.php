@@ -173,7 +173,21 @@
                                         <b>Peso Kier:</b>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <p class="text-right"><?php echo $phpprice ?></p>
+                                        <!-- <p class="text-right"><?php //echo $phpprice ?></p> -->
+                                        <?php 
+                                          $ph_price = mysqli_query($connect, "SELECT * FROM upti_order_list WHERE ol_poid = '$mypoid'");
+                                          foreach ($ph_price as $data) {
+                                            echo $codedata =  $data['ol_code'];
+                                            echo ' ';
+                                            $sum_price = mysqli_query($connect, "SELECT * FROM upti_country WHERE country_code = '$codedata' AND country_name = 'PHILIPPINES'");
+                                            $sum_fetch = mysqli_fetch_array($sum_price);
+                                            echo $php = $sum_fetch['country_price'];
+                                            echo '<br>';
+                                            $php++;
+                                            // $total = 
+                                          }
+                                          // echo $php;
+                                        ?>
                                     </div>
                                     <?php } ?>
                                     <div class="col-12">
