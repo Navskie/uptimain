@@ -118,12 +118,7 @@
         $office = strtoupper($offices);
         $states = $_POST['state'];
 
-        // if ($states == '') {
-        //   $states = 'ALL';
-        // }
-        if ($states == 'ALBERTA') {
-          $states = 'ALBERTA CANADA';
-        } elseif ($states == '') {
+        if ($states == '') {
           $states = 'ALL';
         }
 

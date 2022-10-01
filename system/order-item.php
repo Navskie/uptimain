@@ -523,7 +523,7 @@
                                     $insert_free_2 = mysqli_query($connect, "INSERT INTO upti_free_2 (f2_number, f2_poid) VALUES ('$free', '$poid')");
                                  }
                 
-                                echo "<script>window.location='order-list.php'</script>";
+                                // echo "<script>window.location='order-list.php'</script>";
                                 flash("order", "Item has been added successfully!");
                                 header('location: order-list.php');
                                 
