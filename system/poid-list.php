@@ -176,18 +176,21 @@
                                         <!-- <p class="text-right"><?php //echo $phpprice ?></p> -->
                                         <?php 
                                           $ph_price = mysqli_query($connect, "SELECT * FROM upti_order_list WHERE ol_poid = '$mypoid'");
+                                          echo '<p class="text-right">';  
+                                          echo '=';
                                           foreach ($ph_price as $data) {
-                                            echo '<p class="text-right">';
-                                            echo $codedata =  $data['ol_code'];
+                                            
+                                            $codedata =  $data['ol_code'];
                                             $codeqty =  $data['ol_qty'];
-                                            echo ' ';
+                                            // echo ' ';
                                             $sum_price = mysqli_query($connect, "SELECT * FROM upti_country WHERE country_code = '$codedata' AND country_name = 'PHILIPPINES'");
                                             $sum_fetch = mysqli_fetch_array($sum_price);
-                                            echo $php = $sum_fetch['country_price'] * $codeqty;
-                                            echo '<br>';
-                                            echo '</p>';
+                                            $php = $sum_fetch['country_price'] * $codeqty;
+                                            echo $php.'+';
+                                            // echo '<br>';
                                             // $total = 
                                           }
+                                          echo '</p>';
                                           // echo $php;
                                         ?>
                                     </div>
