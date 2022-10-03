@@ -103,16 +103,22 @@
                                     <input type="text" class="form-control rounded-0" name="barangay">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-4">
                                 <div class="form-group">
                                     <label>City</label>
                                     <input type="text" class="form-control rounded-0" name="city">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-4">
                                 <div class="form-group">
                                     <label>Province</label>
                                     <input type="text" class="form-control rounded-0" name="province">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>State</label>
+                                    <input type="text" class="form-control rounded-0" name="state">
                                 </div>
                             </div>
                             <div class="col-12">

@@ -31,7 +31,7 @@
   // delete pending order 
   $less_date = date('m-d-Y', strtotime('-14 days'));
 
-  $pending_auto = mysqli_query($connect, "UPDATE upti_transaction SET trans_status = 'Canceled' WHERE trans_date <= '$less_date' AND trans_status = 'Pending'");
+  $pending_auto = mysqli_query($connect, "UPDATE upti_transaction SET trans_status = 'Canceled' WHERE trans_date <= '$less_date' AND trans_status = 'Pending' AND trans_mop != 'Cash on Pick Up'");
 
   $pending_auto2 = mysqli_query($connect, "UPDATE upti_order_list SET ol_status = 'Canceled' WHERE ol_date <= '$less_date' AND ol_status = 'Pending'");
 ?>
