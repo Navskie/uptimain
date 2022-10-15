@@ -266,7 +266,7 @@
                     $total_amount = $subtotal + $shipping - $less_shipping_fee;
         
                     // PROCESS ORDER
-                    if(isset($_POST['checkoutsssss'])) {
+                    if(isset($_POST['checkouts'])) {
                         $img_name = $_FILES['file']['name'];
                         $img_size = $_FILES['file']['size'];
                         $img_tmp = $_FILES['file']['tmp_name'];
