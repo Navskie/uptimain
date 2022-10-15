@@ -21,7 +21,7 @@
       $check_item_qry = mysqli_query($connect, $check_item);
       $check_item_num = mysqli_num_rows($check_item_qry);
 
-      if ($check_item_num == 0) {
+      // if ($check_item_num == 0) {
           if ($newassign == '') {
               
               if ($role == 'ADS') {
@@ -40,13 +40,13 @@
               }
     
           }
-      } else {
-        if ($role == 'ADS') {
-          echo "<script>alert('New Assigned Missing.');window.location.href = 'fb-page.php';</script>";
-        } else {
-          echo "<script>alert('New Assigned Missing.');window.location.href = 'osr-fb.php';</script>";
-        }
-      }
+      // } else {
+      //   if ($role == 'ADS') {
+      //     echo "<script>alert('New Assigned Missing.');window.location.href = 'fb-page.php';</script>";
+      //   } else {
+      //     echo "<script>alert('New Assigned Missing.');window.location.href = 'osr-fb.php';</script>";
+      //   }
+      // }
 
     }
 ?>
