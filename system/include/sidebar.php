@@ -81,6 +81,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item"> 
+            <a href="Osrlist.php" class="nav-link">
+              <i class="nav-icon uil uil-user-check"></i>
+              <p>
+                OSR Account 
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="reseller-list.php" class="nav-link">
               <i class="nav-icon uil uil-house-user"></i>
