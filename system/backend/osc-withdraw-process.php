@@ -31,7 +31,7 @@
             if ($amount > $mymoney) {
                 echo "<script>alert('Insufficient Balance');window.location.href='../osr-wallet';</script>";
             } else {
-                if ($amount < 301) {
+                if ($amount < 300) {
                     echo "<script>alert('500 is the minimum withdraw');window.location.href='../osr-wallet';</script>";
                 } else {
                     $kuhapera = "INSERT INTO upti_osr_withdraw 
