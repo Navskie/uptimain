@@ -358,23 +358,23 @@
                             // Package Check
 
                             $c1 = $get_package_fetch['package_one_code'];
-                            $oq1 = $get_package_fetch['package_one_qty'];
+                            echo $oq1 = $get_package_fetch['package_one_qty'];
                             $q1 = $item_qty * $oq1;
                 
                             $c2 = $get_package_fetch['package_two_code'];
-                            $oq2 = $get_package_fetch['package_two_qty'];
+                            echo $oq2 = $get_package_fetch['package_two_qty'];
                             $q2 = $item_qty * $oq2;
                 
                             $c3 = $get_package_fetch['package_three_code'];
-                            $oq3 = $get_package_fetch['package_three_qty'];
+                            echo $oq3 = $get_package_fetch['package_three_qty'];
                             $q3 = $item_qty * $oq3;
                 
                             $c4 = $get_package_fetch['package_four_code'];
-                            $oq4 = $get_package_fetch['package_four_qty'];
+                            echo $oq4 = $get_package_fetch['package_four_qty'];
                             $q4 = $item_qty * $oq4;
                 
                             $c5 = $get_package_fetch['package_five_code'];
-                            $oq5 = $get_package_fetch['package_five_qty'];
+                            echo $oq5 = $get_package_fetch['package_five_qty'];
                             $q5 = $item_qty * $oq5;
                             
                             // 1
@@ -514,23 +514,23 @@
                                     'Pending',
                                     '$date_today'
                                 )";
-                                $upline_qry = mysqli_query($connect, $insert_order);
+                                // $upline_qry = mysqli_query($connect, $insert_order);
 
-                                 // free 2 insert 
-                                 $free_2 = mysqli_query($connect, "SELECT * FROM upti_code WHERE code_name = '$item_code' AND code_category = 'BUY ONE GET TWO'");
-                                 if(mysqli_num_rows($free_2) > 0) {
-                                    $free = $item_qty * 2;
-                                    $insert_free_2 = mysqli_query($connect, "INSERT INTO upti_free_2 (f2_number, f2_poid) VALUES ('$free', '$poid')");
-                                 }
+                                //  // free 2 insert 
+                                //  $free_2 = mysqli_query($connect, "SELECT * FROM upti_code WHERE code_name = '$item_code' AND code_category = 'BUY ONE GET TWO'");
+                                //  if(mysqli_num_rows($free_2) > 0) {
+                                //     $free = $item_qty * 2;
+                                //     $insert_free_2 = mysqli_query($connect, "INSERT INTO upti_free_2 (f2_number, f2_poid) VALUES ('$free', '$poid')");
+                                //  }
                 
-                                // echo "<script>window.location='order-list.php'</script>";
-                                flash("order", "Item has been added successfully!");
-                                header('location: order-list.php');
+                                // // echo "<script>window.location='order-list.php'</script>";
+                                // flash("order", "Item has been added successfully!");
+                                // header('location: order-list.php');
                                 
                             } else {
                                 // echo "<script>alert('Insufficient Stocks to Process Your Order!');window.location='order-list.php'</script>";
-                                flash("warning", "Insufficient Stocks to Process Your Order!!");
-                                header('location: order-list.php');
+                                // flash("warning", "Insufficient Stocks to Process Your Order!!");
+                                // header('location: order-list.php');
                             }
                 
                         } else {
