@@ -75,7 +75,7 @@
 // if ($customer_country == 'South Korea') {
 //     $customer_country = 'KOREA';
 // }
-$customer_country = 'PHILIPPINES';
+$customer_country = 'Canada';
 
 $c_code = mysqli_query($connect, "SELECT * FROM upti_country_currency WHERE cc_country = '$customer_country'");
 $cc_fetch = mysqli_fetch_array($c_code);
