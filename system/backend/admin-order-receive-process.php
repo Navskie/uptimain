@@ -12,7 +12,7 @@
         $get_order_list = "SELECT * FROM upti_order_list INNER JOIN upti_transaction ON ol_poid = trans_poid WHERE ol_poid = '$id'";
         $get_order_list_sql = mysqli_query($connect, $get_order_list);
         while ($get_order_list_fetch = mysqli_fetch_array($get_order_list_sql)) {
-            echo $code = $get_order_list_fetch['ol_code'];
+            $code = $get_order_list_fetch['ol_code'];
             $qty = $get_order_list_fetch['ol_qty'];
             $country = $get_order_list_fetch['ol_country'];
             $date_order = $get_order_list_fetch['ol_date'];
@@ -33,7 +33,7 @@
             $check_package = "SELECT * FROM upti_package WHERE package_code = '$code'";
             $check_package_qry = mysqli_query($connect, $check_package);
             $pack_fetch = mysqli_fetch_array($check_package_qry);
-            echo $check_package_sql = mysqli_num_rows($check_package_qry);
+            $check_package_sql = mysqli_num_rows($check_package_qry);
 
             // echo $c1 = $pack_fetch['package_one_code'];
             
@@ -149,7 +149,7 @@
                     $re_sql = "INSERT INTO stockist_return (re_poid, re_code, re_qty, re_date, re_status) VALUES ('$id', '$remain_stock_code', '$qty', '$date', 'Received')";
                     $re_qry = mysqli_query($connect, $re_sql);
                       // }
-                    echo $change_status = "UPDATE upti_transaction SET trans_stockist = 'Received' WHERE trans_poid = '$id'";
+                    $change_status = "UPDATE upti_transaction SET trans_stockist = 'Received' WHERE trans_poid = '$id'";
                     $change_status_qry = mysqli_query($connect, $change_status);
                 }
             // } 
