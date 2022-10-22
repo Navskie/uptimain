@@ -2156,6 +2156,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="osc-request.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>OSC Wallet List</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
                 <a href="accounting-request.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Request List</p>

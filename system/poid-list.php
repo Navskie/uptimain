@@ -127,9 +127,14 @@
                                 <span>Transaction Information:</span>
                                 <br><br>
                                 <div class="row">
-                                    
                                     <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <b>Country:</b>
+                                        <b>State :</b>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <p><?php echo $cc ?></p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <b>Country :</b>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <p><?php echo $cc ?></p>
