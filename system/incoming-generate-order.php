@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <button class="btn btn-dark form-control rounded-0" name="export_sales">EXPORT</button>
+                                            <button class="btn btn-dark form-control rounded-0" name="export_sales" disabled>EXPORT</button>
                                         </div>
                                     </div>
                                 </div>
