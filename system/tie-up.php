@@ -25,6 +25,16 @@
     $country = $get_country_f['trans_country'];
     $state = $get_country_f['trans_state'];
 
+    if ($country == 'CANADA') {
+      if ($state == 'ALBERTA') {
+        $state = 'ALBERTA';
+      } else {
+        $state = 'ALL';
+      }
+    } else {
+      $state = 'ALL';
+    }
+
     if (isset($_POST['add'])) {
         $code = $_POST['item_code'];
         $qty = $_POST['qty'];
