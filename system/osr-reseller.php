@@ -99,7 +99,7 @@
                     <div class="col-sm-12 col-md-12 col-lg-12">
                       <div class="form-group">
                         <select class="form-control select2bs4" style="width: 100%;" name="state">
-                        <option  value="">Select State</option>
+                        <option  value="">Select States</option>
                         <?php
                             $lugar = "SELECT * FROM upti_state";
                             $lugar_qry = mysqli_query($connect, $lugar);
