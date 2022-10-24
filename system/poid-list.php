@@ -30,6 +30,10 @@
     $cc = $transact['trans_country'];
     $states = $transact['trans_state'];
 
+    if ($states == '') {
+      $states = 'ALL';
+    }
+
     $stock_pending2 = mysqli_query($connect, "SELECT * FROM stockist WHERE stockist_code = '$usercode' AND stockist_country = '$cc'");
     $counts2 = mysqli_num_rows($stock_pending2);
     if ($counts2 == 0) {
@@ -132,7 +136,7 @@
                                         <b>State :</b>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <p><?php echo $state ?></p>
+                                        <p><?php echo $states ?></p>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <b>Country :</b>
