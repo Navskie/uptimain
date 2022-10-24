@@ -23,6 +23,7 @@
     $get_country_f = mysqli_fetch_array($get_country);
 
     $country = $get_country_f['trans_country'];
+    $state = $get_country_f['trans_state'];
 
     if (isset($_POST['add'])) {
         $code = $_POST['item_code'];
@@ -50,7 +51,7 @@
         $new_item_code = $get_new_code_fetch['code_main'];
 
         // Single Item Check
-        $check_stock = "SELECT * FROM stockist_inventory WHERE si_item_code = '$new_item_code' AND si_item_country = '$country'";
+        $check_stock = "SELECT * FROM stockist_inventory WHERE si_item_code = '$new_item_code' AND si_item_country = '$country' AND si_item_state = '$state'";
         $check_stock_qry = mysqli_query($connect, $check_stock);
         $check_stock_fetch = mysqli_fetch_array($check_stock_qry);
         $check_stock_num = mysqli_num_rows($check_stock_qry);
