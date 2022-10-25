@@ -40,6 +40,11 @@
     $address = $transaction['trans_address'];
     $mode_of_payment = $transaction['trans_mop'];
     $state = $transaction['trans_state'];
+    if ($state == 'ALBERTA') {
+      $state = $state;
+    } else {
+      $state = 'ALL';
+    }
   } else {
     $state = '';
     $country = '';
