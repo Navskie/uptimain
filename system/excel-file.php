@@ -566,6 +566,8 @@
                     <th>Item Code</th>
                     <th>Item Description</th>
                     <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Peso</th>
                     <th>Status</th>
                 <tr>
             ';
@@ -594,6 +596,8 @@
                             <td>'.$row['ol_code'].'</td>
                             <td>'.$row['ol_desc'].'</td>
                             <td>'.$row['ol_qty'].'</td>
+                            <td>'.$row['ol_price'].'</td>
+                            <td>'.$row['ol_php'].'</td>
                             <td>'.$row['ol_status'].'</td>
                         </tr>
                     ';
@@ -831,7 +835,7 @@
             //     <th>Total Sales of '.$date1.' to '.$date2.'</th>
             // <tr>
             // ';
-            echo 'this is nme';
+
             // // Display Column Names as First Row
             // // $excelData = implode('\t', array_values($fields)).'\n';
     

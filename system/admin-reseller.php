@@ -130,7 +130,7 @@
                 <label>Export Reseller Sales</label>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                        <form action="excel-file.php" method="post">
+                        <form action="reseller-sales-report.php" method="post">
                             <div class="row">
 
                                 <div class="col-lg-6 col-md-6 col-sm-12">
@@ -175,9 +175,9 @@
                                     </form>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <form action="excel-file.php" method="post">
+                                    <!-- <form action="excel-file.php" method="post">
                                     <button class="btn btn-sm btn-primary form-control" name="export_reseller_info">Information</button>
-                                    </form>
+                                    </form> -->
                                 </div>
                                 
                             </div>
