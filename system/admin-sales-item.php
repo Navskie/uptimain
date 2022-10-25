@@ -57,14 +57,14 @@
             $total_sql = mysqli_query($connect, $total);
             $total_fetch = mysqli_fetch_array($total_sql);
         } elseif (empty($country) AND $status != 'Delivered') {
-            $order_sql = "SELECT * FROM upti_transaction WHERE trans_status = '$status' AND trans_date BETWEEN '$date1' AND '$date2' ORDER BY trans_date DESC";
+            $order_sql = "SELECT * FROM upti_transaction WHERE trans_status = '$status' AND trans_status = '$status' AND trans_date BETWEEN '$date1' AND '$date2' ORDER BY trans_date DESC";
             $order_qry = mysqli_query($connect, $order_sql);
 
             $total = "SELECT SUM(upti_order_list.ol_php) AS total FROM upti_order_list INNER JOIN upti_transaction ON upti_order_list.ol_poid = upti_transaction.trans_poid WHERE upti_transaction.trans_status = '$status' AND upti_transaction.trans_date BETWEEN '$date1' AND '$date2'";
             $total_sql = mysqli_query($connect, $total);
             $total_fetch = mysqli_fetch_array($total_sql);
         } elseif (empty($country) AND empty($status)) {
-            echo $order_sql = "SELECT * FROM upti_transaction WHERE trans_date BETWEEN '$date1' AND '$date2' ORDER BY trans_date DESC";
+            $order_sql = "SELECT * FROM upti_transaction WHERE trans_date BETWEEN '$date1' AND '$date2' ORDER BY trans_date DESC";
             $order_qry = mysqli_query($connect, $order_sql);
 
             $total = "SELECT SUM(ol_php) AS total FROM upti_order_list WHERE ol_date BETWEEN '$date1' AND '$date2'";
