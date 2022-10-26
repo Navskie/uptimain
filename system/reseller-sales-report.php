@@ -43,7 +43,7 @@
 
         $seller = $data['ol_reseller'];
 
-        $check_reseller = mysqli_query($connect, "SELECT users_code, users_name, users_main FROM upti_users WHERE users_code = '$seller' AND users_role = 'UPTIRESELLER'");
+        $check_reseller = mysqli_query($connect, "SELECT users_code, users_name, users_main FROM upti_users INNER JOIN upti_reseller  WHERE users_code = '$seller' AND users_role = 'UPTIRESELLER'");
         $check_fetch = mysqli_fetch_array($check_reseller);
 
         if (mysqli_num_rows($check_reseller) > 0) {
