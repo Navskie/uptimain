@@ -30,13 +30,14 @@
       // Column Name List
       $sheet->setCellValue('A1', 'ORDER DATE');
       $sheet->setCellValue('B1', 'TRIGGER DATE');
-      $sheet->setCellValue('C1', 'POID');
-      $sheet->setCellValue('D1', 'COUNTRY');
-      $sheet->setCellValue('E1', 'STATE');
-      $sheet->setCellValue('F1', 'ADDRESS');
-      $sheet->setCellValue('G1', 'PRICE');
-      $sheet->setCellValue('H1', 'PESO');
-      $sheet->setCellValue('I1', 'STATUS');
+      $sheet->setCellValue('D1', 'SELLER ID');
+      $sheet->setCellValue('E1', 'POID');
+      $sheet->setCellValue('F1', 'COUNTRY');
+      $sheet->setCellValue('G1', 'STATE');
+      $sheet->setCellValue('H1', 'ADDRESS');
+      $sheet->setCellValue('I1', 'PRICE');
+      $sheet->setCellValue('J1', 'PESO');
+      $sheet->setCellValue('K1', 'STATUS');
 
       $rowCount = 2;
       // data loop
@@ -50,13 +51,14 @@
 
         $sheet->setCellValue('A'.$rowCount, $datas['trans_date']);
         $sheet->setCellValue('B'.$rowCount, $data['activities_date']);
-        $sheet->setCellValue('C'.$rowCount, $data['ol_poid']);
-        $sheet->setCellValue('D'.$rowCount, $data['ol_country']);
-        $sheet->setCellValue('E'.$rowCount, $datas['trans_state']);
-        $sheet->setCellValue('F'.$rowCount, $datas['trans_address']);
-        $sheet->setCellValue('G'.$rowCount, $data['ol_php']);
+        $sheet->setCellValue('C'.$rowCount, $data['ol_seller']);
+        $sheet->setCellValue('D'.$rowCount, $data['ol_poid']);
+        $sheet->setCellValue('E'.$rowCount, $data['ol_country']);
+        $sheet->setCellValue('F'.$rowCount, $datas['trans_state']);
+        $sheet->setCellValue('G'.$rowCount, $datas['trans_address']);
         $sheet->setCellValue('H'.$rowCount, $data['ol_price']);
-        $sheet->setCellValue('I'.$rowCount, $datas['trans_status']);
+        $sheet->setCellValue('I'.$rowCount, $data['ol_php']);
+        $sheet->setCellValue('J'.$rowCount, $datas['trans_status']);
 
         $rowCount++;
       }
