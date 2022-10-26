@@ -840,7 +840,8 @@
             // // $excelData = implode('\t', array_values($fields)).'\n';
     
             // // Fetch Records From Database
-            // $export_sql = "SELECT users_code, trans_country, users_name, SUM(upti_order_list.ol_php) AS TOTAL_SALES FROM upti_users
+            // $export_sql = "
+            // SELECT users_code, trans_country, users_name, SUM(upti_order_list.ol_php) AS TOTAL_SALES FROM upti_users
             // INNER JOIN
             // upti_order_list ON upti_users.users_code = upti_order_list.ol_reseller
             // INNER JOIN
