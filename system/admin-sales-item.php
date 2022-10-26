@@ -163,7 +163,7 @@
                         </form>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
-                        <form action="excel-file.php" method="post">
+                        <form action="sales-item-report.php" method="post">
                             <div class="row">
                                 <!-- First Row -->
                                 <div class="col-12">
