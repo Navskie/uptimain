@@ -16,7 +16,7 @@
     $date2 = date("m-d-Y", strtotime($newDate2));
 
     $reseller_sales = "
-    SELECT ol_poid, activities_date, ol_country, ol_php, ol_price  FROM upti_order_list
+    SELECT ol_seller, ol_poid, activities_date, ol_country, ol_php, ol_price  FROM upti_order_list
     INNER JOIN upti_activities ON activities_poid = ol_poid
     WHERE activities_caption = 'Order Delivered' AND activities_date BETWEEN '$date1' AND '$date2';
     ";
