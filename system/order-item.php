@@ -252,7 +252,7 @@
                             $new_item_code = $get_new_code_fetch['code_main'];
 
                             // Single Item Check
-                            echo $check_stock = "SELECT * FROM stockist_inventory WHERE si_item_code = '$new_item_code' AND si_item_country = '$c_country' AND si_item_state = '$c_state'";
+                            $check_stock = "SELECT * FROM stockist_inventory WHERE si_item_code = '$new_item_code' AND si_item_country = '$c_country' AND si_item_state = '$c_state'";
                             $check_stock_qry = mysqli_query($connect, $check_stock);
                             $check_stock_fetch = mysqli_fetch_array($check_stock_qry);
                             $check_stock_num = mysqli_num_rows($check_stock_qry);
@@ -514,23 +514,23 @@
                                     'Pending',
                                     '$date_today'
                                 )";
-                                // $upline_qry = mysqli_query($connect, $insert_order);
+                                $upline_qry = mysqli_query($connect, $insert_order);
 
-                                //  // free 2 insert 
-                                //  $free_2 = mysqli_query($connect, "SELECT * FROM upti_code WHERE code_name = '$item_code' AND code_category = 'BUY ONE GET TWO'");
-                                //  if(mysqli_num_rows($free_2) > 0) {
-                                //     $free = $item_qty * 2;
-                                //     $insert_free_2 = mysqli_query($connect, "INSERT INTO upti_free_2 (f2_number, f2_poid) VALUES ('$free', '$poid')");
-                                //  }
+                                 // free 2 insert 
+                                 $free_2 = mysqli_query($connect, "SELECT * FROM upti_code WHERE code_name = '$item_code' AND code_category = 'BUY ONE GET TWO'");
+                                 if(mysqli_num_rows($free_2) > 0) {
+                                    $free = $item_qty * 2;
+                                    $insert_free_2 = mysqli_query($connect, "INSERT INTO upti_free_2 (f2_number, f2_poid) VALUES ('$free', '$poid')");
+                                 }
                 
-                                // // echo "<script>window.location='order-list.php'</script>";
-                                // flash("order", "Item has been added successfully!");
-                                // header('location: order-list.php');
+                                // echo "<script>window.location='order-list.php'</script>";
+                                flash("order", "Item has been added successfully!");
+                                header('location: order-list.php');
                                 
                             } else {
-                                // echo "<script>alert('Insufficient Stocks to Process Your Order!');window.location='order-list.php'</script>";
-                                // flash("warning", "Insufficient Stocks to Process Your Order!!");
-                                // header('location: order-list.php');
+                                echo "<script>alert('Insufficient Stocks to Process Your Order!');window.location='order-list.php'</script>";
+                                flash("warning", "Insufficient Stocks to Process Your Order!!");
+                                header('location: order-list.php');
                             }
                 
                         } else {
