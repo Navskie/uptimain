@@ -107,7 +107,7 @@
                         <th class="text-center">Date</th>
                         <th class="text-center">Poid</th>
                         <th class="text-center">Amount</th>
-                        <!-- <th class="text-center">Remarks</th> -->
+                        <th class="text-center">Remarks</th>
                         <th class="text-center">Status</th>
                       </tr>
                       </thead>
@@ -120,7 +120,7 @@
                         <td class="text-center"><?php echo $wallet['p_date'] ?> - <?php echo $wallet['p_time'] ?></td>
                         <td class="text-center"><?php echo $wallet['p_poid'] ?></td>
                         <td class="text-center"><?php echo $wallet['p_amount'] ?></td>
-                        <!-- <td class="text-center"><?php //echo $wallet['p_desc'] ?></td> -->
+                        <td class="text-center"><?php echo $wallet['p_desc'] ?></td>
                         <td class="text-center"><?php echo $wallet['p_pack'] ?></td>
                       </tr>
                       <?php } ?>                  
