@@ -6,15 +6,19 @@
         $output = '
             <table class="table" border="1">
             <tr>
-                <th>Date</th>
+                <th>Stockist ID</th>
                 <th>Poid</th>
-                <th>Percentage</th> 
-                <th>Remarks</th> 
-                <th>Status</th> 
+                <th>Item Code</th> 
+                <th>Description</th> 
+                <th>Country</th> 
+                <th>Qty</th>
+                <th>Price</th> 
+                <th>Subtotal</th> 
+                <th>Refund</th> 
             <tr> 
         ';
 
-        $export_sql = "SELECT * FROM stockist_percentage INNER JOIN upti_transaction ON trans_poid = p_poid WHERE p_code = 'S1123' AND trans_country = 'CANADA' AND trans_state = 'ALBERTA'";
+        $export_sql = "SELECT * FROM stockist_earning INNER JOIN upti_transaction ON trans_poid = e_poid WHERE e_id = 'S1123' AND trans_country = 'CANADA' AND trans_state = 'ALBERTA'";
         
         // echo '<br>';
         $export_qry = mysqli_query($connect, $export_sql);
@@ -24,11 +28,15 @@
             while($row = mysqli_fetch_array($export_qry)) {
                 $output .='
                     <tr>
-                        <td>'.$row['p_date'].' - '.$row['p_time'].'</td>
-                        <td>'.$row['p_poid'].'</td>
-                        <td>'.$row['p_amount'].'</td>
-                        <td>'.$row['p_desc'].'</td>
-                        <td>'.$row['p_pack'].'</td>
+                        <td>'.$row['e_id'].'</td>
+                        <td>'.$row['e_poid'].'</td>
+                        <td>'.$row['e_code'].'</td>
+                        <td>'.$row['e_desc'].'</td>
+                        <td>'.$row['e_country'].'</td>
+                        <td>'.$row['e_qty'].'</td>
+                        <td>'.$row['e_price'].'</td>
+                        <td>'.$row['e_subtotal'].'</td>
+                        <td>'.$row['e_refund'].'</td>
                     </tr>
                 ';
             }
