@@ -270,12 +270,17 @@
               <div class="preview bg-success">
                 <h2 class="text-center"><i class="uil uil-percentage"></i></h2>
               </div>
-
+              <?php
+                $website_pending = mysqli_query($connect, "SELECT SUM(cart_earn) AS website_sales FROM web_cart INNER JOIN upti_activities ON activities_poid = cart_ref WHERE cart_upper = '$osrID' AND cart_status = 'Delivered' AND activities_date BETWEEN '$date1' AND '$date2'");
+                $website_pending_fetch = mysqli_fetch_array($website_pending);
+    
+                $website_sales4 = $website_pending_fetch['website_sales'] + $sales;
+              ?>
               <div class="info">
                 <h6>Total Delivered Sales</h6>
                 <h2><b>
                 <?php 
-                  echo '₱ '.number_format($sales);
+                  echo '₱ '.number_format($website_sales4);
                 ?>
                 </b></h2>
                 <p class="text-info">For the month of <?php echo $month ?> </p>
@@ -289,6 +294,11 @@
             $get_sales1 = "SELECT SUM(upti_order_list.ol_php) AS php FROM upti_order_list INNER JOIN upti_transaction ON upti_order_list.ol_poid = upti_transaction.trans_poid WHERE upti_transaction.trans_status = 'In Transit' AND upti_order_list.ol_seller = '$osrID' AND upti_order_list.ol_date BETWEEN '$date1' AND '$date2'";
             $get_sales_qry1 = mysqli_query($connect, $get_sales1);
             $get_sales_fetch1 = mysqli_fetch_array($get_sales_qry1);
+
+            $website_transit = mysqli_query($connect, "SELECT SUM(cart_earn) AS website_sales FROM web_cart WHERE cart_upper = '$osrID' AND cart_status = 'In Transit'");
+            $website_transit_fetch = mysqli_fetch_array($website_pending);
+
+            $website_sales3 = $website_transit_fetch['website_sales'];
 
           ?>
           <div class="col-lg-3 col-md-6 col-sm-12">
@@ -322,6 +332,11 @@
             $get_sales_qry1 = mysqli_query($connect, $get_sales1);
             $get_sales_fetch1 = mysqli_fetch_array($get_sales_qry1);
 
+            $website_process = mysqli_query($connect, "SELECT SUM(cart_earn) AS website_sales FROM web_cart WHERE cart_upper = '$osrID' AND cart_status = 'On Process'");
+            $website_process_fetch = mysqli_fetch_array($website_pending);
+
+            $website_sales2 = $website_process_fetch['website_sales'];
+
           ?>
           <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="course">
@@ -337,7 +352,7 @@
                   if ($sales22 == 0) {
                       echo '0';
                   } else {
-                      $sales1 = $get_sales_fetch1['php'];
+                      $sales1 = $get_sales_fetch1['php'] + $website_sales2;
                       echo '₱ '.number_format($sales1);
                   } 
                 ?>
@@ -354,6 +369,11 @@
             $get_sales_qry1 = mysqli_query($connect, $get_sales1);
             $get_sales_fetch1 = mysqli_fetch_array($get_sales_qry1);
 
+            $website_pending = mysqli_query($connect, "SELECT SUM(cart_earn) AS website_sales FROM web_cart WHERE cart_upper = '$osrID' AND cart_status = 'Pending'");
+            $website_pending_fetch = mysqli_fetch_array($website_pending);
+
+            $website_sales = $website_pending_fetch['website_sales'];
+
           ?>
           <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="course">
@@ -369,7 +389,7 @@
                   if ($sales22 == 0) {
                       echo '0';
                   } else { 
-                      $sales1 = $get_sales_fetch1['php'];
+                      $sales1 = $get_sales_fetch1['php'] + $website_sales;
                       echo '₱ '.number_format($sales1);
                   } 
                 ?>
