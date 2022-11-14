@@ -84,7 +84,7 @@
         header('Location: system/ads.php');
       }
       elseif ($_SESSION['status'] == 'valid' AND $_SESSION['role'] == 'WEBSITE') {
-        header('Location: system/website.php');
+        header('Location: system/cs-onprocess-order.php');
       }
       elseif ($_SESSION['status'] == 'valid' AND $_SESSION['role'] == 'Customer') {
         header('Location: profile.php');
@@ -200,7 +200,7 @@
       <div class="contain">
         <div class="forms">
           <div class="form login">
-            <span class="title">Uptimised Corporation</span>
+            <span class="title">Uptimised Corporations</span>
             <form action="login-process.php" method="post">
               <div class="input-field">
                 <input type="text" name="us" placeholder="Input your username" required autocomplete="off">

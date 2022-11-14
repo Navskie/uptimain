@@ -12,7 +12,7 @@
   $ref = 'CS'.$id.'-22'.$user_count;
 
   if (isset($_POST['discount'])) {
-    // echo $dis_code = $_POST['reseller'];
+    echo $dis_code = $_POST['reseller'];
 
     // $check_reseller = mysqli_query($connect, "SELECT * FROM upti_users WHERE users_code = '$dis_code'");
     // $num = mysqli_num_rows($check_reseller);

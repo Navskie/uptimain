@@ -26,7 +26,7 @@
           $reward_sales = $total_fetch_points_sql_0['total'];
         ?>
         <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="course">
               <div class="preview bg-primary">
                 <h2 class="text-center text-light"><i class="uil uil-user-exclamation"></i></h2>
@@ -35,7 +35,11 @@
               <div class="info">
                 <h6>OSR Seller Code</h6>
                 <h2><b><?php echo $osrID ?></b></h2>
-                <p class="text-danger pt-2">Uptimised Corporation PH</p>
+                <div class="copy-text">
+                  <input type="text" id="myInput" value="https://system.uptimised-hris.com/replicate.php?id=<?php echo $_SESSION['code'] ?>" style="display: none">
+                  <button class="btn btn-success" onclick="myFunction()"><i class="uil uil-copy"></i> Get Link</button>
+                  <br><br>
+                </div>
               </div>
             </div>
             <br>
@@ -94,9 +98,15 @@
         $get_number_rts_qry = mysqli_query($connect, $get_number_rts);
         $get_number_rts_fetch = mysqli_fetch_array($get_number_rts_qry);
 
-        $RTSs = $get_number_rts_fetch['RTSs'];
+        $get_sales_rts = "SELECT COUNT(DISTINCT trans_ref) AS deliver_rts FROM web_transaction INNER JOIN upti_activities ON web_transaction.trans_ref = upti_activities.activities_poid WHERE activities_caption = 'RTS' AND trans_upline = '$osrID' AND activities_date BETWEEN '$date1' AND '$date2'";
+            $get_sales_qry_rts = mysqli_query($connect, $get_sales_rts);
+            $get_sales_fetch_rts = mysqli_fetch_array($get_sales_qry_rts);
 
-        $total_rts = $get_number_rts_fetch['RTSs'] * 500;
+        $website_rts = $get_sales_fetch_rts['deliver_rts'];
+
+        $RTSs = $get_number_rts_fetch['RTSs'] + $website_rts;
+
+        $total_rts = $RTSs * 500;
 
         if ($RTSs <= 19 && $RTSs >= 10) {
             $total_rts = $get_number_rts_fetch['RTSs'] * 500 + 1000;
@@ -271,10 +281,13 @@
                 <h2 class="text-center"><i class="uil uil-percentage"></i></h2>
               </div>
               <?php
-                $website_pending = mysqli_query($connect, "SELECT SUM(cart_earn) AS website_sales FROM web_cart INNER JOIN upti_activities ON activities_poid = cart_ref WHERE cart_upper = '$osrID' AND cart_status = 'Delivered' AND activities_date BETWEEN '$date1' AND '$date2'");
-                $website_pending_fetch = mysqli_fetch_array($website_pending);
+                $website_del = "SELECT SUM(cart_earn) AS website_sales FROM web_cart INNER JOIN upti_activities ON activities_poid = cart_ref WHERE cart_upper = '$osrID' AND activities_caption = 'Delivered' AND activities_date BETWEEN '$date1' AND '$date2'";
+                $website_test = mysqli_query($connect, $website_del);
+                $website_del_fetch = mysqli_fetch_array($website_test);
     
-                $website_sales4 = $website_pending_fetch['website_sales'] + $sales;
+                $website_sales4 = $website_del_fetch['website_sales'] + $sales;
+                // echo $total_rts;
+                $new_total_sales = $website_sales4 + $total_rts;
               ?>
               <div class="info">
                 <h6>Total Delivered Sales</h6>
@@ -295,8 +308,9 @@
             $get_sales_qry1 = mysqli_query($connect, $get_sales1);
             $get_sales_fetch1 = mysqli_fetch_array($get_sales_qry1);
 
-            $website_transit = mysqli_query($connect, "SELECT SUM(cart_earn) AS website_sales FROM web_cart WHERE cart_upper = '$osrID' AND cart_status = 'In Transit'");
-            $website_transit_fetch = mysqli_fetch_array($website_pending);
+            $website_transit = "SELECT SUM(cart_earn) AS website_sales FROM web_cart WHERE cart_upper = '$osrID' AND cart_status = 'In Transit'";
+            $website_transit_qry = mysqli_query($connect, $website_transit);
+            $website_transit_fetch = mysqli_fetch_array($website_transit_qry);
 
             $website_sales3 = $website_transit_fetch['website_sales'];
 
@@ -315,7 +329,7 @@
                   if ($sales22 == 0) {
                       echo '0';
                   } else {
-                      $sales1 = $get_sales_fetch1['php'];
+                      $sales1 = $get_sales_fetch1['php'] + $website_sales3;
                       echo '₱ '.number_format($sales1);
                   } 
                 ?>
@@ -333,7 +347,7 @@
             $get_sales_fetch1 = mysqli_fetch_array($get_sales_qry1);
 
             $website_process = mysqli_query($connect, "SELECT SUM(cart_earn) AS website_sales FROM web_cart WHERE cart_upper = '$osrID' AND cart_status = 'On Process'");
-            $website_process_fetch = mysqli_fetch_array($website_pending);
+            $website_process_fetch = mysqli_fetch_array($website_process);
 
             $website_sales2 = $website_process_fetch['website_sales'];
 
@@ -405,11 +419,6 @@
             $get_sales12 = "SELECT COUNT(DISTINCT trans_poid) AS rtss FROM upti_transaction INNER JOIN upti_activities ON upti_transaction.trans_poid = upti_activities.activities_poid WHERE activities_caption = 'RTS' AND trans_seller = '$osrID' AND trans_date BETWEEN '$date1' AND '$date2'";
             $get_sales_qry12 = mysqli_query($connect, $get_sales12);
             $get_sales_fetch12 = mysqli_fetch_array($get_sales_qry12);
-
-            $get_sales_rts = "SELECT COUNT(DISTINCT trans_poid) AS deliver_rts FROM upti_transaction INNER JOIN upti_activities ON upti_transaction.trans_poid = upti_activities.activities_poid WHERE activities_caption = 'Deliver to RTS' AND trans_seller = '$osrID' AND activities_date BETWEEN '$date1' AND '$date2'";
-            $get_sales_qry_rts = mysqli_query($connect, $get_sales_rts);
-            $get_sales_fetch_rts = mysqli_fetch_array($get_sales_qry_rts);
-
           ?>
           <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="course">
@@ -421,7 +430,7 @@
                 <h6>Total RTS</h6>
                 <h2><b>
                 <?php 
-                  $sales12 = $get_sales_fetch12['rtss'] + $get_sales_fetch_rts['deliver_rts'];
+                  $sales12 = $RTSs;
                   if ($sales12 == '') {
                       echo '0';
                   } else {
@@ -446,3 +455,17 @@
   </div>
 
 <?php include 'include/footer.php'; ?>
+<script>
+function myFunction() {
+  // Get the text field
+  var copyText = document.getElementById("myInput");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+  
+}
+</script>

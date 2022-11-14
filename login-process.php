@@ -3,6 +3,12 @@
     include 'function.php';
     include 'include/db.php';
 
+    if ($_SESSION['replicate_code'] === '') {
+      $replicate_code = '';
+    } else {
+      $replicate_code = $_SESSION['replicate_code'];
+    }
+
     if(isset($_POST['sign-in'])) {
       $us = $_POST['us'];
       $pw = $_POST['pw'];
@@ -125,7 +131,7 @@
             $_SESSION['uid'] = $check_account_fetch['users_id'];
             $_SESSION['code'] = $check_account_fetch['users_code'];
             $_SESSION['role'] = $check_account_fetch['users_role'];
-            header('Location: system/website.php');
+            header('Location: system/cs-onprocess-order.php');
           }
 
           
@@ -162,7 +168,8 @@
             cs_email,
             cs_mobile,
             cs_bday,
-            cs_date
+            cs_date,
+            cs_upper
           ) VALUES (
             '$myuid',
             '$fn',
@@ -170,7 +177,8 @@
             '$ea',
             '$mn',
             '$bday',
-            '$date'
+            '$date',
+            '$replicate_code'
           )
           ");
     

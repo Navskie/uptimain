@@ -152,7 +152,7 @@
                     $change_status = "UPDATE upti_transaction SET trans_stockist = 'Received' WHERE trans_poid = '$id'";
                     $change_status_qry = mysqli_query($connect, $change_status);
                 }
-            // } 
+            // }
         }
     
         if ($_SESSION['role'] != 'LOGISTIC') {

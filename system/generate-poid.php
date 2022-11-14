@@ -159,7 +159,7 @@
         if ($state != 'ALBERTA') {
           $bank = 'D&J Go Glow Inc.';
         } else {
-          $bank = 'MHY ALL TIME SHOP';
+          $bank = 'MY ALL TIME SHOP';
         }
     } elseif ($customer_country == 'HONGKONG') {
         $bank = 'Ads Konnect / Alipay HK';

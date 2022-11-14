@@ -80,7 +80,7 @@
               ?>
               <!-- /.card-header -->
               <div class="card-body">
-                <form action="main-information.php" method="post">
+                <form action="main-information.php" method="post" encrypt="">
                   <div class="row">
                     <div class="col-2">
                     </div>

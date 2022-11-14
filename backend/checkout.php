@@ -6,6 +6,7 @@
     $date = date('m-d-Y');
 
     $id = $_SESSION['uid'];
+
     $user_info = mysqli_query($connect, "SELECT * FROM upti_users WHERE users_id = '$id'");
     $fetch_count = mysqli_fetch_array($user_info);
     $user_count = $fetch_count['users_count'];
@@ -27,9 +28,10 @@
     $address_fetch = mysqli_fetch_array($address_stmt);
 
     $address = $address_fetch['add_house'] .' '. $address_fetch['add_city'] .' '. $address_fetch['add_province'] .' '. $address_fetch['add_barangay'];
+    $state = $address_fetch['add_state'];
 
     if (isset($_POST['checkout'])) {
-        $reseller_id = $_POST['reseller'];
+        // $reseller_id = $_POST['reseller'];
 
         $transaction_stmt = mysqli_query($connect, "SELECT * FROM web_transaction WHERE trans_id = '$profile' AND trans_ref = '$ref'");
         $transaction = mysqli_fetch_array($transaction_stmt);
@@ -38,6 +40,7 @@
             header('location: ../cart.php');
         } else {
             $payment_stmt = mysqli_query($connect, "SELECT * FROM web_payment WHERE payment_ref = '$ref' AND payment_uid = '$profile'");
+
 
             if (mysqli_num_rows($payment_stmt) > 0  && $transaction['trans_mop'] == 'Payment First' || mysqli_num_rows($payment_stmt) == 0  && $transaction['trans_mop'] != 'Payment First') {
                 // SUBTOTAL
@@ -186,31 +189,30 @@
                     $surcharge = 0;
                 }
 
-                
-
                 if ($user_count < 1) {
-                  $discount = $subtotal * 0.05;
+                  $discount = 0;
                   // Total Amount
                   $total_amount = $subtotal + $surcharge + $shipping - $less_shipping_fee;
                   $new_total = $total_amount - $discount;
                 } else {
-                  $discount = '';
+                  $discount = 0;
                   // Total Amount
                   $total_amount = $subtotal + $surcharge + $shipping - $less_shipping_fee;
                   $new_total = $total_amount - $discount;
                 }
 
-                $trans_stmt = "UPDATE web_transaction SET 
-                  trans_upline = '$reseller_id',
+                $trans_stmt = "UPDATE web_transaction SET   
+                  trans_upline = '$replicate_code',
                   trans_shipping = '$shipping',
                   trans_surcharge = '$surcharge',
                   trans_less_shipping = '$less_shipping_fee',
                   trans_subtotal = '$new_total',
-                  trans_discount = '$discount',
                   trans_date = '$date',
                   trans_time = '$time',
                   trans_address = '$address',
+                  trans_state = '$state',
                   trans_status = 'Pending'
+
                 WHERE trans_ref = '$ref'";
                 $trans_stmt_qry = mysqli_query($connect, $trans_stmt);
 
@@ -219,7 +221,7 @@
 
                 $cart_status = mysqli_query($connect, "UPDATE web_cart SET cart_status = 'Pending' WHERE cart_ref = '$ref'");
 
-                unset($_SESSION['repli_code']);
+                // unset($_SESSION['replicate_code']);
 
                 flash("success", "Order has been submitted successfully");
                 header('location: ../checkout-list.php');

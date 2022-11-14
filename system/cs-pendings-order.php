@@ -2,7 +2,7 @@
 <?php
     $SCode = $_SESSION['code'];
     
-    if ($_SESSION['role'] == 'WEBSITE') {
+    if ($_SESSION['role'] == 'WEBSITE' || $_SESSION['role'] == 'BRANCH') {
 ?>
 <?php include 'include/preloader.php'; ?>
 <?php include 'include/stockist-navbar.php'; ?>
@@ -33,7 +33,7 @@
                                 </thead>
                                 <?php
                                     
-                                    $order_sql = "SELECT * FROM web_transaction WHERE trans_status= 'Pending' ORDER BY trans_date ASC";
+                                    $order_sql = "SELECT * FROM web_transaction WHERE trans_status= 'Pending' AND trans_upline = 'NULL' ORDER BY trans_date ASC";
                                     
                                     $order_qry = mysqli_query($connect, $order_sql);
                                     $number =1;

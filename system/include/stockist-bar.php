@@ -135,10 +135,43 @@
             <a href="cs-pending-order.php" class="nav-link">
               <i class="uil uil-globe nav-icon"></i>
               <p>
-                Customer Orders
+                Website Orders
                 <span class="badge badge-info right"><?php echo $get_sum_data_fetch['bilang']; ?></span>
               </p>
             </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="uil uil-list-ol nav-icon"></i>
+              <p>
+                Website Orders List
+                <i class="uil uil-arrows-shrink-v right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="website-process-order.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Processed Orders</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="website-delivered.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Delivered Orders</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="website-cancel.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cancelled Orders</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <?php
             if ($check_stockist_num > 0) {
@@ -167,7 +200,7 @@
           <?php
             }
             
-            if ($_SESSION['uid'] == '1010') {
+            if ($_SESSION['uid'] == '1010' || $_SESSION['code'] == 'S7130') {
           ?>
           <li class="nav-item">
             <a href="#" class="nav-link">
